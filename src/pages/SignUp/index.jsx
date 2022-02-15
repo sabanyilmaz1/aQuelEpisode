@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+//import { useNavigate } from 'react-router-dom'
 
 //Context
 import { UserContext } from '../../utils/context'
@@ -22,7 +22,7 @@ function SignUp() {
 
   // Partie Serveur qui gere l'inscription
   // à Firebase et redirige vers la page d'accueil en mode connecté
-  const navigate = useNavigate()
+  //const navigate = useNavigate()
   const { signUpFirebase } = useContext(UserContext)
 
   const inputs = useRef([])

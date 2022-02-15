@@ -1,5 +1,9 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useContext, useRef } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+
+//Context
+import { UserContext } from '../../utils/context'
+
 //Logo
 import logo from '../../assets/logoHome.svg'
 
@@ -16,6 +20,31 @@ import { SuivantSpan } from './style'
 function HomeSignIn() {
   // Afficher un message d'alerte en cas de problème de saisi
   const [validation, setValidation] = useState('')
+
+  const navigate = useNavigate()
+  const { signInFirebase } = useContext(UserContext)
+
+  const inputs = useRef([])
+  const addInputs = (el) => {
+    if (el && !inputs.current.includes(el)) {
+      inputs.current.push(el)
+    }
+  }
+
+  const formRef = useRef()
+
+  const handleForm = async (e) => {
+    e.preventDefault()
+
+    try {
+      await signInFirebase(inputs.current[0].value, inputs.current[1].value)
+      setValidation('')
+      navigate('/private/private-home')
+    } catch {
+      setValidation("Erreur ! l'Email ou le mot de passe est incorrect")
+    }
+  }
+
   return (
     <div>
       <LogoWrapper>
@@ -40,10 +69,11 @@ function HomeSignIn() {
         <ConnexionSpan>Connexion</ConnexionSpan>
 
         <div>
-          <form>
+          <form ref={formRef} onSubmit={handleForm}>
             <div>
               <label htmlFor="SignInEmail"></label>
               <TextInput
+                ref={addInputs}
                 id="SignInEmail"
                 name="email"
                 type="email"
@@ -55,6 +85,7 @@ function HomeSignIn() {
             <div>
               <label htmlFor="PwdEmail"></label>
               <TextInput
+                ref={addInputs}
                 id="PwdEmail"
                 name="pwd"
                 type="password"
