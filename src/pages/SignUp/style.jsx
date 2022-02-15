@@ -42,7 +42,7 @@ export const SuivantBtn = styled.button`
   margin-top: 75px;
   background: #ff8600;
   border-radius: 30px;
-  margin: 75px;
+  margin: 30px;
   width: 200px;
 `
 export const SuivantSpan = styled.span`
@@ -52,4 +52,9 @@ export const SuivantSpan = styled.span`
   font-size: 35px;
   line-height: 58px;
   color: #f1f2f6;
+`
+
+export const ValidationSpan = styled.p`
+  font-weight: bold;
+  margin-top: 20px;
 `
