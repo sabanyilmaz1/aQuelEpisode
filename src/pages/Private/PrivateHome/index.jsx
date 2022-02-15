@@ -7,7 +7,6 @@ export default function PrivateHome() {
   return (
     <div>
       <h1>Je suis connecté sur le compte - id : {currentUser.uid}! </h1>
-      <button>Ajouter un utilisateur</button>
     </div>
   )
 }
