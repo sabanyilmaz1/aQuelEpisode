@@ -73,3 +73,22 @@ export const SuivantSpan = styled.span`
   line-height: 58px;
   color: #f1f2f6;
 `
+
+export const FooterSignIn = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-item: center;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 100px;
+`
+
+export const FooterBtn = styled.button`
+  background: transparent;
+  border: 0px;
+`
+export const FooterSpan = styled.span`
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  color: #f1f2f6;
+`

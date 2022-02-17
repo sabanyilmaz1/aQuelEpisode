@@ -1,22 +1,26 @@
 import { Link, useNavigate } from 'react-router-dom'
-import React from 'react'
+import React, { useContext } from 'react'
 
 // Fonction firebase
 
 import { signOut } from 'firebase/auth'
 import { auth } from '../../firebase-config'
 
+//Context
+import { UserContext } from '../../utils/context'
+
 //Style
 
 import { NavContainer } from './style'
 import { TextLink } from './style'
-import { TextDeconnecter } from './style'
 import { HomeLogo } from './style'
 
 //Logo
 import logo from '../../assets/logoHeader.svg'
 
 function Header() {
+  const { displayHeader } = useContext(UserContext)
+
   const navigate = useNavigate()
 
   const logOut = async () => {
@@ -31,20 +35,23 @@ function Header() {
   }
 
   return (
-    <NavContainer>
-      <Link to="/private/private-home">
-        <HomeLogo src={logo} />
-      </Link>
+    <>
+      {displayHeader && (
+        <NavContainer>
+          <Link to="/private/private-home">
+            <HomeLogo src={logo} />
+          </Link>
 
-      <TextLink>Ajouter une série</TextLink>
-      <TextLink>Mes Séries</TextLink>
-      <TextLink>À voir</TextLink>
-      <TextLink>À venir</TextLink>
-      <TextLink>les meilleurs séries</TextLink>
+          <TextLink>Ajouter une série</TextLink>
+          <TextLink>Mes Séries</TextLink>
+          <TextLink>À voir</TextLink>
+          <TextLink>À venir</TextLink>
+          <TextLink>les meilleurs séries</TextLink>
 
-      <TextDeconnecter onClick={logOut}> Se deconnecter</TextDeconnecter>
-    </NavContainer>
+          <TextLink onClick={logOut}>Se deconnecter</TextLink>
+        </NavContainer>
+      )}
+    </>
   )
 }
-
 export default Header

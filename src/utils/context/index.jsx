@@ -13,6 +13,17 @@ export const UserContext = createContext()
 export function UserContextProvider(props) {
   const [currentUser, setCurrentUser] = useState()
   const [loadingData, setLoadingData] = useState(true)
+  const [displayHeader, setDisplayHeader] = useState(false)
+
+  const HideHeader = () => {
+    if (currentUser) {
+      setDisplayHeader(true)
+    } else if (!currentUser) {
+      setDisplayHeader(false)
+    }
+  }
+
+  // Fonctions Firebase pour gerer l'inscription,connexion et deconnexion des utlisateurs
 
   const signUpFirebase = (email, pwd) =>
     createUserWithEmailAndPassword(auth, email, pwd)
@@ -30,9 +41,15 @@ export function UserContextProvider(props) {
 
   return (
     <UserContext.Provider
-      value={{ signUpFirebase, currentUser, signInFirebase }}
+      value={{
+        signUpFirebase,
+        currentUser,
+        signInFirebase,
+        displayHeader,
+        HideHeader,
+      }}
     >
-      {props.children}
+      {!loadingData && props.children}
     </UserContext.Provider>
   )
 }

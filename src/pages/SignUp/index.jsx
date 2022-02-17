@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext } from 'react'
-//import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 //Context
 import { UserContext } from '../../utils/context'
@@ -22,7 +22,7 @@ function SignUp() {
 
   // Partie Serveur qui gere l'inscription
   // à Firebase et redirige vers la page d'accueil en mode connecté
-  //const navigate = useNavigate()
+  const navigate = useNavigate()
   const { signUpFirebase } = useContext(UserContext)
 
   const inputs = useRef([])
@@ -50,7 +50,7 @@ function SignUp() {
       formRef.current.reset()
       setValidation('')
       //console.log(cred)
-      //navigate('/private/private-home')
+      navigate('/private/private-home')
     } catch (err) {
       if (err.code === 'auth/invalid-email') {
         setValidation('Email invalide')
@@ -65,7 +65,9 @@ function SignUp() {
   return (
     <div>
       <LogoWrapper>
-        <img src={logo} alt="Logo" />
+        <Link to="/">
+          <img src={logo} alt="Logo" />
+        </Link>
       </LogoWrapper>
 
       <InscriptionBloc>

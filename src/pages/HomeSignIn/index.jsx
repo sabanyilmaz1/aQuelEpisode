@@ -16,13 +16,18 @@ import { ConnexionBloc } from './style'
 import { TextInput } from './style'
 import { SuivantBtn } from './style'
 import { SuivantSpan } from './style'
+import { FooterBtn } from './style'
+import { FooterSignIn } from './style'
+import { FooterSpan } from './style'
 
 function HomeSignIn() {
   // Afficher un message d'alerte en cas de problème de saisi
   const [validation, setValidation] = useState('')
 
   const navigate = useNavigate()
-  const { signInFirebase } = useContext(UserContext)
+  const { signInFirebase, HideHeader } = useContext(UserContext)
+
+  HideHeader() // On masque l'header pour cette page
 
   const inputs = useRef([])
   const addInputs = (el) => {
@@ -39,6 +44,9 @@ function HomeSignIn() {
     try {
       await signInFirebase(inputs.current[0].value, inputs.current[1].value)
       setValidation('')
+
+      //Redirection vers la page d'accueil en mode connecté si l'inscription est bonne
+
       navigate('/private/private-home')
     } catch {
       setValidation("Erreur ! l'Email ou le mot de passe est incorrect")
@@ -99,10 +107,17 @@ function HomeSignIn() {
               <SuivantSpan>Suivant</SuivantSpan>
             </SuivantBtn>
           </form>
-          <button>
-            <Link to="/inscription">CRÉER UN COMPTE</Link>
-          </button>
-          <button>Mot de passe oublié ?</button>
+          <FooterSignIn>
+            <FooterBtn>
+              <Link style={{ textDecoration: 1 }} to="/inscription">
+                <FooterSpan>Créer un compte</FooterSpan>{' '}
+              </Link>
+            </FooterBtn>
+            <FooterBtn>
+              {' '}
+              <FooterSpan>Mot de passe oublié ?</FooterSpan>
+            </FooterBtn>
+          </FooterSignIn>
         </div>
       </ConnexionBloc>
     </div>
