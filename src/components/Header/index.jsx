@@ -43,7 +43,9 @@ function Header() {
           </Link>
 
           <TextLink>Ajouter une série</TextLink>
-          <TextLink>Mes Séries</TextLink>
+          <Link to="/private/mytvshows">
+            <TextLink>Mes Séries</TextLink>
+          </Link>
           <TextLink>À voir</TextLink>
           <TextLink>À venir</TextLink>
           <TextLink>les meilleurs séries</TextLink>

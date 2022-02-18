@@ -5,7 +5,6 @@ import {
   getAllUsers,
   getAllSerieByUser,
   addUsers,
-  addSeries,
 } from '../../../database/Database'
 
 export default function PrivateHome() {
