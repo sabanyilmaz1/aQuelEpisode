@@ -2,7 +2,7 @@ import React, { useState, useContext, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 //Context
-import { UserContext } from '../../utils/context'
+import { UserContext } from '../../utils/Usercontext'
 
 //Logo
 import logo from '../../assets/logoHome.svg'
@@ -27,7 +27,7 @@ function HomeSignIn() {
   const navigate = useNavigate()
   const { signInFirebase, HideHeader } = useContext(UserContext)
 
-  HideHeader() // On masque l'header pour cette page
+  HideHeader('nonConnecté') // On masque l'header pour cette page
 
   const inputs = useRef([])
   const addInputs = (el) => {

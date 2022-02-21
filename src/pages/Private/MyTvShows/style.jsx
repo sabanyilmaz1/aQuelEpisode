@@ -11,4 +11,5 @@ export const TitlePage = styled.h1`
   letter-spacing: -0.05em;
   color: #27187e;
   margin-left: 30px;
+  margin-top: 20px;Ò
 `

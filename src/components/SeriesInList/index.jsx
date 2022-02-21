@@ -13,31 +13,30 @@ import { ProgressionBar } from './style'
 
 import imGOT from '../../assets/imagegot.png'
 
-export default function SerieInList() {
-  /*{
-    
+export default function SerieInList({
   nomSerie,
   nombreSaisons,
-  estTerminé,
   chaineSerie,
   imageSerie,
   nombreEpisode,
-  nombreEpisodeRegarde
-}*/
+  nombreEpisodeRegarde,
+}) {
   return (
     <div>
       <SerieContainer>
         <SerieElement>
-          <ImageSerie src={imGOT} />
+          <ImageSerie src={imageSerie} />
           <InfoSerieContainer>
-            <SerieTitle>Game of Thrones</SerieTitle>
-            <SerieInfo>8 saisons - Terminée - HBO</SerieInfo>
+            <SerieTitle>{nomSerie}</SerieTitle>
+            <SerieInfo>
+              {nombreSaisons} saisons - {chaineSerie}{' '}
+            </SerieInfo>
           </InfoSerieContainer>
           <ProgressionContainer>
             <div>
               <ProgressionSpan>Progression</ProgressionSpan>
             </div>
-            <ProgressionBar value="64" max="80" />
+            <ProgressionBar value={nombreEpisodeRegarde} max={nombreEpisode} />
           </ProgressionContainer>
         </SerieElement>
       </SerieContainer>

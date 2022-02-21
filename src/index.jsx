@@ -4,10 +4,11 @@ import ReactDOM from 'react-dom'
 import HomeSignIn from './pages/HomeSignIn'
 import SignUp from './pages/SignUp'
 import Header from './components/Header'
-import { UserContextProvider } from './utils/context'
+import { UserContextProvider } from './utils/Usercontext'
 import Private from './pages/Private'
 import PrivateHome from './pages/Private/PrivateHome'
-import MyTvShows from './pages/MyTvShows'
+import MyTvShows from './pages/Private/MyTvShows'
+import AddTvShows from './pages/Private/AddTvShows'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,6 +21,7 @@ ReactDOM.render(
           <Route path="/private" element={<Private />}>
             <Route path="/private/private-home" element={<PrivateHome />} />
             <Route path="/private/mytvshows" element={<MyTvShows />} />
+            <Route path="/private/addtvshows" element={<AddTvShows />} />
           </Route>
         </Routes>
       </UserContextProvider>

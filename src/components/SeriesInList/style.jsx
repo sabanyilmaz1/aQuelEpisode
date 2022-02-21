@@ -2,18 +2,22 @@ import styled from 'styled-components'
 
 export const SerieContainer = styled.div`
   width: 1350px;
-  height: 135px;
-  background: #aeb8fe;
+  height: 250px;
+  background: #758bfd;
+
   border-radius: 25px;
   margin-left: 30px;
   margin-right: 30px;
   margin-bottom: 40px;
 `
 export const ImageSerie = styled.img`
-  width: 120px;
-  height: 90px;
-  margin: 25px;
+  width: 200px;
+  height: 200px;
+  max-width: 100%;
+  image-rendering: auto;
+  margin: 20px;
   border-radius: 15px;
+  border: 5px solid #f1f2f6;
 `
 
 export const InfoSerieContainer = styled.div`
@@ -22,9 +26,9 @@ export const InfoSerieContainer = styled.div`
 `
 export const SerieTitle = styled.h2`
   font-family: Bebas Neue;
-  font-size: 36px;
+  font-size: 46px;
   line-height: 43px;
-  color: #000000;
+  color: #f1f2f6;
   margin-top: 20px;
 `
 export const SerieElement = styled.div`
@@ -36,7 +40,7 @@ export const SerieInfo = styled.span`
   font-family: Bebas Neue;
   font-size: 20px;
   color: #000000;
-  margin-top: 25px;
+  margin-top: 10px;
 `
 export const ProgressionSpan = styled.span`
   width: 328px;
@@ -47,8 +51,8 @@ export const ProgressionSpan = styled.span`
 `
 export const ProgressionContainer = styled.div`
   flex-direction: column;
-  margin-top: 25px;
-  margin-left: 500px;
+  margin-top: 20px;
+  margin-left: 400px;
 `
 export const ProgressionBar = styled.progress`
   width: 300px;

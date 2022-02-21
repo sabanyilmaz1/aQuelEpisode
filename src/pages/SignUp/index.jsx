@@ -2,7 +2,7 @@ import React, { useState, useRef, useContext } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 
 //Context
-import { UserContext } from '../../utils/context'
+import { UserContext } from '../../utils/Usercontext'
 
 //Logo
 import logo from '../../assets/logoHome.svg'
@@ -23,7 +23,9 @@ function SignUp() {
   // Partie Serveur qui gere l'inscription
   // à Firebase et redirige vers la page d'accueil en mode connecté
   const navigate = useNavigate()
-  const { signUpFirebase } = useContext(UserContext)
+  const { signUpFirebase, HideHeader } = useContext(UserContext)
+
+  HideHeader('nonConnecté')
 
   const inputs = useRef([])
   const addInputs = (el) => {

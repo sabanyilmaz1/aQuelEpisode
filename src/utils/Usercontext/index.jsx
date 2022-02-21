@@ -15,10 +15,10 @@ export function UserContextProvider(props) {
   const [loadingData, setLoadingData] = useState(true)
   const [displayHeader, setDisplayHeader] = useState(false)
 
-  const HideHeader = () => {
-    if (currentUser) {
+  const HideHeader = (modal) => {
+    if (modal === 'connecté') {
       setDisplayHeader(true)
-    } else if (!currentUser) {
+    } else if (modal === 'nonConnecté') {
       setDisplayHeader(false)
     }
   }

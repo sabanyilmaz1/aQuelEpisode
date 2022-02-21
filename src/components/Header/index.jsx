@@ -7,7 +7,7 @@ import { signOut } from 'firebase/auth'
 import { auth } from '../../firebase-config'
 
 //Context
-import { UserContext } from '../../utils/context'
+import { UserContext } from '../../utils/Usercontext'
 
 //Style
 
@@ -19,7 +19,7 @@ import { HomeLogo } from './style'
 import logo from '../../assets/logoHeader.svg'
 
 function Header() {
-  const { displayHeader } = useContext(UserContext)
+  const { displayHeader, currentUser, HideHeader } = useContext(UserContext)
 
   const navigate = useNavigate()
 
@@ -34,6 +34,10 @@ function Header() {
     }
   }
 
+  if (currentUser) {
+    HideHeader('connecté')
+  }
+
   return (
     <>
       {displayHeader && (
@@ -42,7 +46,10 @@ function Header() {
             <HomeLogo src={logo} />
           </Link>
 
-          <TextLink>Ajouter une série</TextLink>
+          <Link to="/private/addtvshows">
+            <TextLink>Ajouter une série</TextLink>
+          </Link>
+
           <Link to="/private/mytvshows">
             <TextLink>Mes Séries</TextLink>
           </Link>
