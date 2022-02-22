@@ -7,37 +7,47 @@ import {
   addSeries,
   addSeasons,
   addEpisodes,
-  getAllSerieByUser,
 } from '../../database/FunctionsDatabase'
 
 //Style
-import { SerieContainer, TextSpan, ImageSerie, BtnAdd, AddSpan } from './style'
+import {
+  SerieContainer,
+  SerieTitle,
+  PictureSerie,
+  AddBtn,
+  AddText,
+} from './style'
 
-export default function SerieInAddList({ nomSerie, lienPoster, idSerie }) {
+export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
   const { currentUser } = useContext(UserContext)
   const idUserConnected = currentUser.uid
 
   const IMG_API = 'http://image.tmdb.org/t/p/w500'
   let imageSerie = ''
-  if (lienPoster == null) {
+  if (posterLink == null) {
     imageSerie =
       'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/660px-No-Image-Placeholder.svg.png?20200912122019'
   } else {
-    imageSerie = IMG_API + lienPoster
+    imageSerie = IMG_API + posterLink
   }
 
   // Cette fonction recupere les informations necessaires sur la série selectionnée et les envoies dans la base de donnée
-  const getShow = async (id) => {
-    const { data } = await axios.get(
+  const getSeries = async (id) => {
+    const reponseApiSeries = await axios.get(
       `https://api.themoviedb.org/3/tv/${id}?api_key=e308966c5ea18213912b8a786712b64c&language=fr-FR`
     )
-    console.log(data)
-    const nomSerie = data.name
-    const nomChaine = data.networks[0].name
-    const nombreSaisons = data.number_of_seasons
-    const nombreEpisode = data.number_of_episodes
-    const imageSerie = 'http://image.tmdb.org/t/p/w500/' + data?.poster_path
-    const resumeSerie = data.overview
+    console.log(id)
+    const dataSerie = reponseApiSeries.data
+    console.log(dataSerie)
+
+    // Attribut à ajouter dans la base de données
+    const nomSerie = dataSerie.name
+    const nomChaine = dataSerie.networks[0].name
+    const nombreSaisons = dataSerie.number_of_seasons
+    const nombreEpisode = dataSerie.number_of_episodes
+    const imageSerie =
+      'http://image.tmdb.org/t/p/w500/' + dataSerie?.poster_path
+    const resumeSerie = dataSerie.overview
 
     // Ajout de la série dans la base de donnée
     const Serie = {
@@ -53,28 +63,31 @@ export default function SerieInAddList({ nomSerie, lienPoster, idSerie }) {
     addSeries(idUserConnected, Serie)
 
     // Ajout des saisons de la série selectionnée
-    const saisonsSerie = data.seasons
+    const seasonsSerie = dataSerie.seasons
 
-    if (saisonsSerie[0].name === 'Épisodes spéciaux') {
-      for (let i = 1; i < data.number_of_seasons + 1; i++) {
-        console.log(`Saison ${i}`, saisonsSerie[i])
-        const numSaison = saisonsSerie[i].season_number
-        const nombreEpisode = saisonsSerie[i].episode_count
+    // Certaines série sur TMDB API ont une saison 0 que je ne garde pas
+    if (seasonsSerie[0].name === 'Épisodes spéciaux') {
+      // Attribut à mettre dans la base de données
+
+      for (let i = 1; i < dataSerie.number_of_seasons + 1; i++) {
+        const numSaison = seasonsSerie[i].season_number
+        const nombreEpisode = seasonsSerie[i].episode_count
         const estRegarde = false
-
         const Saison = { numSaison, nombreEpisode, estRegarde }
 
         addSeasons(idUserConnected, Serie.nomSerie, Saison)
 
         // Ajout des épisodes
+
+        //Requete GET API pour avoir les informations sur chaque saison et ajouter les informations nécessaires
         const reponseAPI = await axios.get(
           `https://api.themoviedb.org/3/tv/${id}/season/${numSaison}?api_key=e308966c5ea18213912b8a786712b64c&language=fr-FR`
         )
-        const dataSaison = reponseAPI.data.episodes
+        const dataSeason = reponseAPI.data.episodes
         for (let j = 0; j < nombreEpisode; j++) {
-          const numEpisode = dataSaison[j].episode_number
-          const dateEpisode = dataSaison[j].air_date
-          const nomEpisode = dataSaison[j].name
+          const numEpisode = dataSeason[j].episode_number
+          const dateEpisode = dataSeason[j].air_date
+          const nomEpisode = dataSeason[j].name
 
           //l'attribut estSortie
           const DateNow = new Date()
@@ -89,26 +102,23 @@ export default function SerieInAddList({ nomSerie, lienPoster, idSerie }) {
             estSorti,
           }
           addEpisodes(idUserConnected, Serie.nomSerie, Saison, Episode)
-          console.log(`Episode ${j + 1}`, Episode)
         }
       }
     } else {
-      for (let i = 0; i < data.number_of_seasons; i++) {
-        console.log(`Saison ${i + 1}`, saisonsSerie[i])
-        const numSaison = saisonsSerie[i].season_number
-        const nombreEpisode = saisonsSerie[i].episode_count
+      for (let i = 0; i < dataSerie.number_of_seasons; i++) {
+        const numSaison = seasonsSerie[i].season_number
+        const nombreEpisode = seasonsSerie[i].episode_count
         const estRegarde = false
 
         const Saison = { numSaison, nombreEpisode, estRegarde }
         addSeasons(idUserConnected, Serie.nomSerie, Saison)
 
         // Ajout des épisodes
-        const reponseAPI = await axios.get(
+        const reponseApiSeason = await axios.get(
           `https://api.themoviedb.org/3/tv/${id}/season/${numSaison}?api_key=e308966c5ea18213912b8a786712b64c&language=fr-FR`
         )
-        const dataSaison = reponseAPI.data.episodes
+        const dataSaison = reponseApiSeason.data.episodes
         // On recupere les informations necessaires pour chaque episode
-
         for (let j = 0; j < nombreEpisode; j++) {
           const numEpisode = dataSaison[j].episode_number
           const dateEpisode = dataSaison[j].air_date
@@ -127,16 +137,15 @@ export default function SerieInAddList({ nomSerie, lienPoster, idSerie }) {
             estSorti,
           }
           addEpisodes(idUserConnected, Serie.nomSerie, Saison, Episode)
-          console.log(`Episode ${j + 1}`, Episode)
         }
       }
     }
   }
 
   // la fonction executée lorsqu'on clique sur "Ajouter la série"
-  const AddShowInList = () => {
-    const idShow = idSerie
-    getShow(idShow)
+  const AddSeriesInList = () => {
+    const id_series = idSerie
+    getSeries(id_series)
   }
 
   function formatDate(date) {
@@ -154,12 +163,12 @@ export default function SerieInAddList({ nomSerie, lienPoster, idSerie }) {
   return (
     <div>
       <SerieContainer>
-        <ImageSerie src={imageSerie} alt={nomSerie} />
+        <PictureSerie src={imageSerie} alt={nameSerie} />
 
-        <TextSpan> {nomSerie}</TextSpan>
-        <BtnAdd onClick={() => AddShowInList()}>
-          <AddSpan>Ajouter la série</AddSpan>
-        </BtnAdd>
+        <SerieTitle> {nameSerie}</SerieTitle>
+        <AddBtn onClick={() => AddSeriesInList()}>
+          <AddText>Ajouter la série</AddText>
+        </AddBtn>
       </SerieContainer>
     </div>
   )

@@ -2,7 +2,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import React, { useContext } from 'react'
 
 // Fonction firebase
-
 import { signOut } from 'firebase/auth'
 import { auth } from '../../firebase-config'
 
@@ -10,10 +9,7 @@ import { auth } from '../../firebase-config'
 import { UserContext } from '../../utils/Usercontext'
 
 //Style
-
-import { NavContainer } from './style'
-import { TextLink } from './style'
-import { HomeLogo } from './style'
+import { NavContainer, TextLink, HomeLogo } from './style'
 
 //Logo
 import logo from '../../assets/logoHeader.svg'
@@ -23,6 +19,7 @@ function Header() {
 
   const navigate = useNavigate()
 
+  // Deconnexion de l'utilisateur, donc rediriger vers la page de connexion
   const logOut = async () => {
     try {
       await signOut(auth)
@@ -34,6 +31,7 @@ function Header() {
     }
   }
 
+  // Si un utilisateur est connecté alors l'header est affiché via cette fonction
   if (currentUser) {
     HideHeader('connecté')
   }
@@ -46,11 +44,11 @@ function Header() {
             <HomeLogo src={logo} />
           </Link>
 
-          <Link to="/private/addtvshows">
+          <Link to="/private/addseries">
             <TextLink>Ajouter une série</TextLink>
           </Link>
 
-          <Link to="/private/mytvshows">
+          <Link to="/private/myseries">
             <TextLink>Mes Séries</TextLink>
           </Link>
           <TextLink>À voir</TextLink>

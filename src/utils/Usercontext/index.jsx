@@ -8,6 +8,8 @@ import { createContext, useState, useEffect } from 'react'
 
 import { auth } from '../../firebase-config'
 
+import { getAllSerieByUser } from '../../database/FunctionsDatabase'
+
 export const UserContext = createContext()
 
 export function UserContextProvider(props) {

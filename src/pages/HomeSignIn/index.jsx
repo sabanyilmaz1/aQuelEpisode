@@ -8,17 +8,19 @@ import { UserContext } from '../../utils/Usercontext'
 import logo from '../../assets/logoHome.svg'
 
 //Style
-import { LogoWrapper } from './style'
-import { DescriptionBloc } from './style'
-import { DescriptionSpan } from './style'
-import { ConnexionSpan } from './style'
-import { ConnexionBloc } from './style'
-import { TextInput } from './style'
-import { SuivantBtn } from './style'
-import { SuivantSpan } from './style'
-import { FooterBtn } from './style'
-import { FooterSignIn } from './style'
-import { FooterSpan } from './style'
+import {
+  LogoWrapper,
+  DescriptionContainer,
+  DescriptionText,
+  ConnexionText,
+  ConnexionContainer,
+  TextInput,
+  SuivantBtn,
+  SuivantText,
+  FooterBtn,
+  FooterSignIn,
+  FooterText,
+} from './style'
 
 function HomeSignIn() {
   // Afficher un message d'alerte en cas de problème de saisi
@@ -29,6 +31,7 @@ function HomeSignIn() {
 
   HideHeader('nonConnecté') // On masque l'header pour cette page
 
+  // La variable inputs stocke les inputs via la fonction addInputs
   const inputs = useRef([])
   const addInputs = (el) => {
     if (el && !inputs.current.includes(el)) {
@@ -40,16 +43,15 @@ function HomeSignIn() {
 
   const handleForm = async (e) => {
     e.preventDefault()
-
     try {
       await signInFirebase(inputs.current[0].value, inputs.current[1].value)
       setValidation('')
 
-      //Redirection vers la page d'accueil en mode connecté si l'inscription est bonne
+      //Redirection vers la page d'accueil en mode connecté si la connexion est bonne
 
       navigate('/private/private-home')
     } catch {
-      setValidation("Erreur ! l'Email ou le mot de passe est incorrect")
+      setValidation("Erreur ! l'email ou le mot de passe est incorrect")
     }
   }
 
@@ -59,8 +61,8 @@ function HomeSignIn() {
         <img src={logo} alt="Logo" />
       </LogoWrapper>
 
-      <DescriptionBloc>
-        <DescriptionSpan>
+      <DescriptionContainer>
+        <DescriptionText>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
           scelerisque arcu eget arcu mollis, at consectetur dui malesuada. Sed a
           magna fringilla, convallis ex nec, rhoncus diam. Suspendisse porttitor
@@ -70,11 +72,11 @@ function HomeSignIn() {
           volutpat at eget ante. Cras placerat eros id dolor accumsan, a dapibus
           eros porta. Ut ante erat, luctus malesuada euismod ac, maximus vel
           libero.
-        </DescriptionSpan>
-      </DescriptionBloc>
+        </DescriptionText>
+      </DescriptionContainer>
 
-      <ConnexionBloc>
-        <ConnexionSpan>Connexion</ConnexionSpan>
+      <ConnexionContainer>
+        <ConnexionText>Connexion</ConnexionText>
 
         <div>
           <form ref={formRef} onSubmit={handleForm}>
@@ -104,22 +106,22 @@ function HomeSignIn() {
             <p>{validation}</p>
 
             <SuivantBtn>
-              <SuivantSpan>Suivant</SuivantSpan>
+              <SuivantText>Suivant</SuivantText>
             </SuivantBtn>
           </form>
           <FooterSignIn>
             <FooterBtn>
               <Link style={{ textDecoration: 1 }} to="/inscription">
-                <FooterSpan>Créer un compte</FooterSpan>{' '}
+                <FooterText>Créer un compte</FooterText>{' '}
               </Link>
             </FooterBtn>
             <FooterBtn>
               {' '}
-              <FooterSpan>Mot de passe oublié ?</FooterSpan>
+              <FooterText>Mot de passe oublié ?</FooterText>
             </FooterBtn>
           </FooterSignIn>
         </div>
-      </ConnexionBloc>
+      </ConnexionContainer>
     </div>
   )
 }

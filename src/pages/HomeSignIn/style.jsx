@@ -7,7 +7,7 @@ export const LogoWrapper = styled.div`
   margin-bottom: 10px;
 `
 
-export const DescriptionBloc = styled.div`
+export const DescriptionContainer = styled.div`
   width: auto;
   height: auto;
   left: 29px;
@@ -17,7 +17,7 @@ export const DescriptionBloc = styled.div`
   text-align: left;
   padding: 10px;
 `
-export const DescriptionSpan = styled.span`
+export const DescriptionText = styled.span`
   font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: 600;
@@ -27,7 +27,7 @@ export const DescriptionSpan = styled.span`
   color: #f1f2f6;
 `
 
-export const ConnexionSpan = styled.span`
+export const ConnexionText = styled.span`
   font-family: 'Bebas Neue', sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -36,7 +36,7 @@ export const ConnexionSpan = styled.span`
   color: #f1f2f6;
 `
 
-export const ConnexionBloc = styled.div`
+export const ConnexionContainer = styled.div`
   width: 731px;
   height: 535px;
   background: #758bfd;
@@ -65,7 +65,7 @@ export const SuivantBtn = styled.button`
   margin: 75px;
   width: 200px;
 `
-export const SuivantSpan = styled.span`
+export const SuivantText = styled.span`
   font-family: 'Bebas Neue', sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -87,7 +87,7 @@ export const FooterBtn = styled.button`
   background: transparent;
   border: 0px;
 `
-export const FooterSpan = styled.span`
+export const FooterText = styled.span`
   font-family: 'Bebas Neue', sans-serif;
   font-size: 24px;
   color: #f1f2f6;

@@ -12,7 +12,7 @@ export const SerieContainer = styled.div`
   align-items: center;
 `
 
-export const ImageSerie = styled.img`
+export const PictureSerie = styled.img`
   width: 400px;
   height: 400px;
   max-width: 100%;
@@ -24,7 +24,7 @@ export const ImageSerie = styled.img`
   border: 5px solid #f1f2f6;
 `
 
-export const TextSpan = styled.span`
+export const SerieTitle = styled.span`
   font-family: Montserrat;
   font-style: normal;
   font-weight: 900;
@@ -36,7 +36,7 @@ export const TextSpan = styled.span`
   line-height: 1.5em;
 `
 
-export const BtnAdd = styled.button`
+export const AddBtn = styled.button`
   background: #ff8600;
   border-radius: 20px;
   width: 200px;
@@ -52,7 +52,7 @@ export const BtnAdd = styled.button`
   }
 `
 
-export const AddSpan = styled.span`
+export const AddText = styled.span`
   font-family: Bebas Neue;
   font-weight: 900;
   font-size: 18px;

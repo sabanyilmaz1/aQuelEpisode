@@ -1,11 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../../utils/Usercontext'
 
-import {
-  getAllUsers,
-  getAllSerieByUser,
-  addUsers,
-} from '../../../database/FunctionsDatabase'
+import { getAllUsers, addUsers } from '../../../database/FunctionsDatabase'
 
 export default function PrivateHome() {
   const { currentUser } = useContext(UserContext)
@@ -18,17 +14,17 @@ export default function PrivateHome() {
 
   useEffect(() => {
     addNewUsers(idUserConnected)
-  }, [])
+  })
 
   const addNewUsers = (idUser) => {
     const foundId = users.find((users) => users.id === idUser)
     if (foundId === undefined) {
+      console.log('Nouvel utilisateur dans la base de donnée')
       addUsers(idUser, idUserEmail)
-    } else {
-      console.log('Utilisateur deja dans la base de donnée')
     }
   }
 
+  // Recupere la liste des utilisateurs
   useEffect(() => {
     getUsers()
   }, [])
@@ -37,9 +33,7 @@ export default function PrivateHome() {
     const data = await getAllUsers()
     setUsers(data.docs.map((doc) => ({ ...doc.data() })))
   }
-
-  console.log('Les utilisateurs', users)
-
+  //console.log('Les utilisateurs', users)
   return (
     <div>
       <h1>Je suis connecté sur le compte - id : {idUserConnected}! </h1>

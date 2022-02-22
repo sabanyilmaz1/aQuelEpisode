@@ -1,3 +1,4 @@
+//Fonction de firebase pour manipuler les données
 import {
   collection,
   getDocs,
@@ -12,22 +13,11 @@ import {
 
 import { db } from '../../firebase-config'
 
-export async function usersAlreadyAdd() {
-  const UtilisateurCollectionRef = collection(db, 'Utilisateurs')
-  const querySnapshot = await getDocs(UtilisateurCollectionRef)
-  querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-
-    console.log(doc.id, ' => ', doc.data())
-  })
-}
-
 export function addUsers(id, email) {
-  //const UtilisateurCollectionRef = collection(db, 'Utilisateurs', id)
   return setDoc(doc(db, 'Utilisateurs', id), { id: id, email: email })
 }
 
-export async function addSeries(idUser, newSerie) {
+export function addSeries(idUser, newSerie) {
   const SerieCollectionRef = doc(
     db,
     'Utilisateurs',
@@ -44,7 +34,7 @@ export function getAllUsers() {
   return getDocs(UtilisateurCollectionRef)
 }
 
-export function getAllSerieByUser(user) {
+export function getAllSeriesByUser(user) {
   const SeriesCollectionRef = collection(db, 'Utilisateurs', user, 'Series')
   return getDocs(SeriesCollectionRef)
 }
@@ -76,4 +66,21 @@ export function addSeasons(idUser, idSerie, newSeason) {
     idSaison
   )
   return setDoc(SaisonRef, newSeason)
+}
+
+export function addEpisodes(idUser, idSerie, season, newEpisode) {
+  const idEpisode = 'Episode' + newEpisode.numEpisode
+  const idSaison = 'Saison' + season.numSaison
+  const EpisodeRef = doc(
+    db,
+    'Utilisateurs',
+    idUser,
+    'Series',
+    idSerie,
+    'Saisons',
+    idSaison,
+    'Episodes',
+    idEpisode
+  )
+  return setDoc(EpisodeRef, newEpisode)
 }

@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
 
-import SerieInAddList from '../../../components/SerieInAddList'
+import AddSeriesCard from '../../../components/AddSeriesCard'
 import { Container, PageContainer, RechercheInput } from './style'
 
-export default function AddTvShows() {
+export default function AddSeries() {
   const TMDB_API =
     'https://api.themoviedb.org/3/tv/popular?api_key=e308966c5ea18213912b8a786712b64c&language=fr-FR&page=1'
 
-  const TMDB_RECHERCHE =
+  const TMDB_SEARCH =
     'https://api.themoviedb.org/3/search/tv?api_key=e308966c5ea18213912b8a786712b64c&language=fr-FR&page=1&include_adult=false&query='
 
-  const [shows, setShows] = useState([])
-  const [TexteRecherche, setTexteRecherche] = useState('')
+  const [series, setSeries] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
     getShows(TMDB_API)
@@ -22,21 +22,21 @@ export default function AddTvShows() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
-        setShows(data.results)
+        setSeries(data.results)
       })
   }
 
   const handleOnSubmit = (e) => {
     e.preventDefault()
 
-    if (TexteRecherche) {
-      getShows(TMDB_RECHERCHE + TexteRecherche)
-      setTexteRecherche('')
+    if (searchTerm) {
+      getShows(TMDB_SEARCH + searchTerm)
+      setSearchTerm('')
     }
   }
 
   const handleOnChange = (e) => {
-    setTexteRecherche(e.target.value)
+    setSearchTerm(e.target.value)
   }
 
   return (
@@ -49,19 +49,19 @@ export default function AddTvShows() {
             name="RechercheSerie"
             type="text"
             placeholder="Rechercher..."
-            value={TexteRecherche}
+            value={searchTerm}
             onChange={handleOnChange}
           />
         </form>
       </Container>
 
       <PageContainer>
-        {shows.length > 0 &&
-          shows.map((show) => (
-            <SerieInAddList
+        {series.length > 0 &&
+          series.map((show) => (
+            <AddSeriesCard
               key={show.id}
-              nomSerie={show.name}
-              lienPoster={show.poster_path}
+              nameSerie={show.name}
+              posterLink={show.poster_path}
               idSerie={show.id}
             />
           ))}
