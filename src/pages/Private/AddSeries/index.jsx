@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
 import AddSeriesCard from '../../../components/AddSeriesCard'
-import { Container, PageContainer, RechercheInput } from './style'
+import { Container, GlobalDiv, PageContainer, RechercheInput } from './style'
+
+import { UserContext } from '../../../utils/Usercontext'
 
 export default function AddSeries() {
   const TMDB_API =
@@ -40,7 +42,7 @@ export default function AddSeries() {
   }
 
   return (
-    <div>
+    <GlobalDiv>
       <Container>
         <form onSubmit={handleOnSubmit}>
           <label htmlFor="RechercheSerie"></label>
@@ -66,6 +68,6 @@ export default function AddSeries() {
             />
           ))}
       </PageContainer>
-    </div>
+    </GlobalDiv>
   )
 }

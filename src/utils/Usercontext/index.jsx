@@ -8,8 +8,6 @@ import { createContext, useState, useEffect } from 'react'
 
 import { auth } from '../../firebase-config'
 
-import { getAllSerieByUser } from '../../database/FunctionsDatabase'
-
 export const UserContext = createContext()
 
 export function UserContextProvider(props) {
@@ -17,10 +15,26 @@ export function UserContextProvider(props) {
   const [loadingData, setLoadingData] = useState(true)
   const [displayHeader, setDisplayHeader] = useState(false)
 
-  const HideHeader = (modal) => {
-    if (modal === 'connecté') {
+  const [detailsVisible, setDetailsVisible] = useState(false)
+  const [idSeriesDetails, setSeriesDetails] = useState()
+
+  const setIdSeries = (id) => {
+    setSeriesDetails(id)
+  }
+
+  const toogleDetails = (modal) => {
+    if (modal === 'afficheDetails') {
+      setDetailsVisible(true)
+    }
+    if (modal === 'fermeDetails') {
+      setDetailsVisible(false)
+    }
+  }
+
+  const HideHeader = (etat) => {
+    if (etat === 'connecté') {
       setDisplayHeader(true)
-    } else if (modal === 'nonConnecté') {
+    } else if (etat === 'nonConnecté') {
       setDisplayHeader(false)
     }
   }
@@ -49,6 +63,10 @@ export function UserContextProvider(props) {
         signInFirebase,
         displayHeader,
         HideHeader,
+        detailsVisible,
+        toogleDetails,
+        idSeriesDetails,
+        setIdSeries,
       }}
     >
       {!loadingData && props.children}

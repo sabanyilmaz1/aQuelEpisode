@@ -16,3 +16,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
 `
+
+export const GlobalDiv = styled.div`
+  z-index: 1;
+`

@@ -42,7 +42,6 @@ export const AddBtn = styled.button`
   width: 200px;
   cursor: pointer;
   transition: 0.2s;
-  z-index: 50;
 
   &:hover {
     background: rgba(255, 134, 0, 0.5);
@@ -59,4 +58,19 @@ export const AddText = styled.span`
   line-height: 22px;
   color: #ffffff;
   text-align: center;
+`
+export const TitleBtn = styled.button`
+  background: transparent;
+  border: none !important;
+  cursor: pointer;
+  transition: 0.2s;
+  &:hover {
+    background: rgba(255, 134, 0, 0.5);
+  }
+  &:active {
+    transform: scale(1.03) translateX(-10%);
+  }
+`
+export const PageContainer = styled.div`
+  z-index: 1;
 `

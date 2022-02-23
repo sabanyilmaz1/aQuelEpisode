@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 
 import { UserContext } from '../../utils/Usercontext'
@@ -16,19 +16,26 @@ import {
   PictureSerie,
   AddBtn,
   AddText,
+  TitleBtn,
+  PageContainer,
 } from './style'
+import AddSeriesDetailCard from '../../components/AddSeriesDetailCard'
 
 export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
-  const { currentUser } = useContext(UserContext)
+  const {
+    currentUser,
+    toogleDetails,
+    detailsVisible,
+    idSeriesDetails,
+    setIdSeries,
+  } = useContext(UserContext)
   const idUserConnected = currentUser.uid
 
   const IMG_API = 'http://image.tmdb.org/t/p/w500'
-  let imageSerie = ''
+  let imageSerie = IMG_API + posterLink
   if (posterLink == null) {
     imageSerie =
       'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/660px-No-Image-Placeholder.svg.png?20200912122019'
-  } else {
-    imageSerie = IMG_API + posterLink
   }
 
   // Cette fonction recupere les informations necessaires sur la série selectionnée et les envoies dans la base de donnée
@@ -160,16 +167,28 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
     return [year, month, day].join('-')
   }
 
+  const toogleDetailsSeries = () => {
+    toogleDetails('afficheDetails')
+    setIdSeries(idSerie)
+  }
+
+  console.log(idSeriesDetails)
+  console.log(detailsVisible)
   return (
     <div>
-      <SerieContainer>
-        <PictureSerie src={imageSerie} alt={nameSerie} />
+      <PageContainer>
+        <SerieContainer>
+          <PictureSerie src={imageSerie} alt={nameSerie} />
+          <TitleBtn onClick={() => toogleDetailsSeries()}>
+            <SerieTitle> {nameSerie}</SerieTitle>
+          </TitleBtn>
+          <AddBtn onClick={() => AddSeriesInList()}>
+            <AddText>Ajouter la série</AddText>
+          </AddBtn>
+        </SerieContainer>
+      </PageContainer>
 
-        <SerieTitle> {nameSerie}</SerieTitle>
-        <AddBtn onClick={() => AddSeriesInList()}>
-          <AddText>Ajouter la série</AddText>
-        </AddBtn>
-      </SerieContainer>
+      {detailsVisible && <AddSeriesDetailCard />}
     </div>
   )
 }
