@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import AddSeriesCard from '../../../components/AddSeriesCard'
 import { Container, GlobalDiv, PageContainer, RechercheInput } from './style'
-
-import { UserContext } from '../../../utils/Usercontext'
 
 export default function AddSeries() {
   const TMDB_API =
@@ -23,7 +21,7 @@ export default function AddSeries() {
     fetch(API)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
+        //console.log(data)
         setSeries(data.results)
       })
   }

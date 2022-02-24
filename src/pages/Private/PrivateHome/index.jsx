@@ -19,7 +19,6 @@ export default function PrivateHome() {
   const addNewUsers = (idUser) => {
     const foundId = users.find((users) => users.id === idUser)
     if (foundId === undefined) {
-      console.log('Nouvel utilisateur dans la base de donnée')
       addUsers(idUser, idUserEmail)
     }
   }
@@ -36,7 +35,7 @@ export default function PrivateHome() {
   //console.log('Les utilisateurs', users)
   return (
     <div>
-      <h1>Je suis connecté sur le compte - id : {idUserConnected}! </h1>
+      <h1>Je suis connecté sur le compte</h1>
     </div>
   )
 }

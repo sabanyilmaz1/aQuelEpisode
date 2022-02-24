@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import axios from 'axios'
 
 import { UserContext } from '../../utils/Usercontext'
@@ -22,13 +22,8 @@ import {
 import AddSeriesDetailCard from '../../components/AddSeriesDetailCard'
 
 export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
-  const {
-    currentUser,
-    toogleDetails,
-    detailsVisible,
-    idSeriesDetails,
-    setIdSeries,
-  } = useContext(UserContext)
+  const { currentUser, toogleDetails, detailsVisible, setIdSeries } =
+    useContext(UserContext)
   const idUserConnected = currentUser.uid
 
   const IMG_API = 'http://image.tmdb.org/t/p/w500'
@@ -43,9 +38,9 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
     const reponseApiSeries = await axios.get(
       `https://api.themoviedb.org/3/tv/${id}?api_key=e308966c5ea18213912b8a786712b64c&language=fr-FR`
     )
-    console.log(id)
+    //console.log(id)
     const dataSerie = reponseApiSeries.data
-    console.log(dataSerie)
+    //console.log(dataSerie)
 
     // Attribut à ajouter dans la base de données
     const nomSerie = dataSerie.name
@@ -66,7 +61,7 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
       imageSerie,
       resumeSerie,
     }
-    console.log('Serie', Serie)
+    //console.log('Serie', Serie)
     addSeries(idUserConnected, Serie)
 
     // Ajout des saisons de la série selectionnée
@@ -172,8 +167,8 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
     setIdSeries(idSerie)
   }
 
-  console.log(idSeriesDetails)
-  console.log(detailsVisible)
+  //console.log(idSeriesDetails)
+  //console.log(detailsVisible)
   return (
     <div>
       <PageContainer>
@@ -187,7 +182,6 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
           </AddBtn>
         </SerieContainer>
       </PageContainer>
-
       {detailsVisible && <AddSeriesDetailCard />}
     </div>
   )

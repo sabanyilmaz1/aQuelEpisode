@@ -53,7 +53,7 @@ function Header() {
           </Link>
           <TextLink>À voir</TextLink>
           <TextLink>À venir</TextLink>
-          <TextLink>les meilleurs séries</TextLink>
+          <TextLink>Les meilleurs séries</TextLink>
 
           <TextLink onClick={logOut}>Se deconnecter</TextLink>
         </NavContainer>

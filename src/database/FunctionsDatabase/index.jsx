@@ -1,15 +1,5 @@
 //Fonction de firebase pour manipuler les données
-import {
-  collection,
-  getDocs,
-  getDoc,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
-  query,
-  setDoc,
-} from 'firebase/firestore'
+import { collection, getDocs, updateDoc, doc, setDoc } from 'firebase/firestore'
 
 import { db } from '../../firebase-config'
 
