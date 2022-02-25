@@ -4,7 +4,6 @@ export const SeriesContainer = styled.div`
   width: 1350px;
   height: 250px;
   background: #758bfd;
-
   border-radius: 25px;
   margin-left: 30px;
   margin-right: 30px;

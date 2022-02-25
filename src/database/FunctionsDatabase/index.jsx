@@ -1,5 +1,13 @@
 //Fonction de firebase pour manipuler les données
-import { collection, getDocs, updateDoc, doc, setDoc } from 'firebase/firestore'
+import {
+  collection,
+  getDocs,
+  updateDoc,
+  doc,
+  setDoc,
+  query,
+  where,
+} from 'firebase/firestore'
 
 import { db } from '../../firebase-config'
 
@@ -45,7 +53,7 @@ export function setEpisodeWatched(idUser, idSerie, idSaison, idEpisode) {
 }
 
 export function addSeasons(idUser, idSerie, newSeason) {
-  const idSaison = 'Saison' + newSeason.numSaison
+  const idSaison = 'Saison ' + newSeason.numSaison
   const SaisonRef = doc(
     db,
     'Utilisateurs',
@@ -59,8 +67,8 @@ export function addSeasons(idUser, idSerie, newSeason) {
 }
 
 export function addEpisodes(idUser, idSerie, season, newEpisode) {
-  const idEpisode = 'Episode' + newEpisode.numEpisode
-  const idSaison = 'Saison' + season.numSaison
+  const idEpisode = 'Episode ' + newEpisode.numEpisode
+  const idSaison = 'Saison ' + season.numSaison
   const EpisodeRef = doc(
     db,
     'Utilisateurs',
@@ -73,4 +81,9 @@ export function addEpisodes(idUser, idSerie, season, newEpisode) {
     idEpisode
   )
   return setDoc(EpisodeRef, newEpisode)
+}
+
+export function getFirstEpisodeToWatch(idUser, idSerie, idSeason) {
+  //Recherche de la saison du prochaine épisode à voir
+  const q = query(collection(db, 'Utilisateurs'))
 }

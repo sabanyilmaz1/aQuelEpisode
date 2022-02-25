@@ -9,6 +9,8 @@ import MySeriesCard from '../../../components/MySeriesCard'
 
 //Style
 import { TitlePage } from './style'
+import { onSnapshot, collection } from 'firebase/firestore'
+import { db } from '../../../firebase-config'
 
 export default function MySeries() {
   const { currentUser } = useContext(UserContext) //Recupere les informations sur l'utilisateur connecté
@@ -16,15 +18,18 @@ export default function MySeries() {
   const [series, setSeries] = useState([])
 
   useEffect(() => {
-    getSeries()
-  })
+    // Recupere la liste des séries de l'utilisateur
 
-  // Recupere la liste des séries de l'utilisateur
-  const getSeries = async () => {
-    const data = await getAllSeriesByUser(idUserConnected)
-    setSeries(data.docs.map((doc) => ({ ...doc.data() })))
-  }
+    const unsubscribe = onSnapshot(
+      collection(db, 'Utilisateurs', idUserConnected, 'Series'),
+      (serie) => {
+        setSeries(serie.docs.map((doc) => doc.data()))
+      }
+    )
+    return unsubscribe
+  }, [])
 
+  console.log(series)
   return (
     <div>
       <TitlePage>Mes Séries</TitlePage>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 
 import { UserContext } from '../../utils/Usercontext'
@@ -8,6 +8,9 @@ import {
   addSeasons,
   addEpisodes,
 } from '../../database/FunctionsDatabase'
+
+import { collection, onSnapshot } from 'firebase/firestore'
+import { db } from '../../firebase-config'
 
 //Style
 import {
@@ -22,6 +25,22 @@ import {
 import AddSeriesDetailCard from '../../components/AddSeriesDetailCard'
 
 export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
+  const [series, setSeries] = useState([])
+
+  useEffect(() => {
+    // Recupere la liste des séries de l'utilisateur
+
+    const unsubscribe = onSnapshot(
+      collection(db, 'Utilisateurs', idUserConnected, 'Series'),
+      (serie) => {
+        setSeries(serie.docs.map((doc) => doc.data()))
+      }
+    )
+    return unsubscribe
+  }, [])
+
+  //console.log(series)
+
   const { currentUser, toogleDetails, detailsVisible, setIdSeries } =
     useContext(UserContext)
   const idUserConnected = currentUser.uid
@@ -60,6 +79,7 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
       nombreEpisodeRegarde: 0,
       imageSerie,
       resumeSerie,
+      estTermine: false,
     }
     //console.log('Serie', Serie)
     addSeries(idUserConnected, Serie)
@@ -147,7 +167,15 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
   // la fonction executée lorsqu'on clique sur "Ajouter la série"
   const AddSeriesInList = () => {
     const id_series = idSerie
-    getSeries(id_series)
+    const name_series = nameSerie
+    const seriesFound = series.find((show) => show.nomSerie === name_series)
+    if (seriesFound !== undefined) {
+      console.log('Serie existant')
+      alert('Erreur : Cette série est deja ajouté dans votre liste')
+    } else {
+      console.log('Serie pas ajouté')
+      getSeries(id_series)
+    }
   }
 
   function formatDate(date) {

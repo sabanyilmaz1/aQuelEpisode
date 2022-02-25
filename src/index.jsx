@@ -9,6 +9,7 @@ import Private from './pages/Private'
 import PrivateHome from './pages/Private/PrivateHome'
 import MySeries from './pages/Private/MySeries'
 import AddSeries from './pages/Private/AddSeries'
+import EpisodesToSee from './pages/Private/EpisodesToSee'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -22,6 +23,7 @@ ReactDOM.render(
             <Route path="/private/private-home" element={<PrivateHome />} />
             <Route path="/private/myseries" element={<MySeries />} />
             <Route path="/private/addseries" element={<AddSeries />} />
+            <Route path="/private/episodestosee" element={<EpisodesToSee />} />
           </Route>
         </Routes>
       </UserContextProvider>

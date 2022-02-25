@@ -51,7 +51,9 @@ function Header() {
           <Link to="/private/myseries">
             <TextLink>Mes Séries</TextLink>
           </Link>
-          <TextLink>À voir</TextLink>
+          <Link to="/private/episodestosee">
+            <TextLink>À voir</TextLink>
+          </Link>
           <TextLink>À venir</TextLink>
           <TextLink>Les meilleurs séries</TextLink>
 

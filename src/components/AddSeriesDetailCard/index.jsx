@@ -33,7 +33,7 @@ export default function AddSeriesDetailCard() {
   useEffect(() => {
     getData()
   }, [])
-
+  console.log(series)
   async function getData() {
     const reponse = await axios.get(
       `https://api.themoviedb.org/3/tv/${idSeriesDetails}?api_key=e308966c5ea18213912b8a786712b64c&language=fr-FR`
