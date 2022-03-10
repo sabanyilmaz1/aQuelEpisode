@@ -1,4 +1,5 @@
 import React from 'react'
+import ProgressBar from '../ProgressBar'
 
 //Style
 import {
@@ -11,6 +12,8 @@ import {
   ProgressionText,
   ProgressionContainer,
   ProgressionBar,
+  DeleteText,
+  DeleteBtn,
 } from './style'
 
 export default function MySeries({
@@ -25,22 +28,22 @@ export default function MySeries({
     <div>
       <SeriesContainer>
         <SeriesItems>
+          <DeleteBtn>
+            <DeleteText>Supprimer la série </DeleteText>{' '}
+          </DeleteBtn>
           <PictureSeries src={pictureSeries} />
           <InfoSerieContainer>
             <SeriesTitle>{nameSeries}</SeriesTitle>
             <SeriesInfo>
               {numberSeasons} saisons - {channelSeries}{' '}
             </SeriesInfo>
+            <ProgressionContainer>
+              <ProgressBar
+                maxValue={numberEpisodes}
+                value={numberWatchedEpisodes}
+              />
+            </ProgressionContainer>
           </InfoSerieContainer>
-          <ProgressionContainer>
-            <div>
-              <ProgressionText>Progression</ProgressionText>
-            </div>
-            <ProgressionBar
-              value={numberWatchedEpisodes}
-              max={numberEpisodes}
-            />
-          </ProgressionContainer>
         </SeriesItems>
       </SeriesContainer>
     </div>

@@ -8,7 +8,7 @@ import { getAllSeriesByUser } from '../../../database/FunctionsDatabase'
 import MySeriesCard from '../../../components/MySeriesCard'
 
 //Style
-import { TitlePage } from './style'
+import { PageDiv, SeriesDiv, TitlePage } from './style'
 import { onSnapshot, collection } from 'firebase/firestore'
 import { db } from '../../../firebase-config'
 
@@ -31,9 +31,9 @@ export default function MySeries() {
 
   console.log(series)
   return (
-    <div>
+    <PageDiv>
       <TitlePage>Mes Séries</TitlePage>
-      <div>
+      <SeriesDiv>
         {series.map((serie, index) => (
           <MySeriesCard
             key={`${serie.nomSerie}-${index}`}
@@ -45,7 +45,7 @@ export default function MySeries() {
             numberWatchedEpisodes={serie.nombreEpisodeRegarde}
           />
         ))}
-      </div>
-    </div>
+      </SeriesDiv>
+    </PageDiv>
   )
 }

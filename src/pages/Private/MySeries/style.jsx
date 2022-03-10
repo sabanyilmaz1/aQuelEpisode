@@ -6,10 +6,15 @@ export const TitlePage = styled.h1`
   font-family: Montserrat;
   font-style: normal;
   font-weight: bold;
-  font-size: 45px;
+  font-size: 55px;
   line-height: 88px;
   letter-spacing: -0.05em;
   color: #27187e;
-  margin-left: 30px;
-  margin-top: 20px;Ò
+  margin-left: 40px;
+  margin-top: 20px;
+`
+export const PageDiv = styled.div``
+export const SeriesDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `
