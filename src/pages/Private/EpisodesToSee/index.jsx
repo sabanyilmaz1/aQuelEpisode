@@ -18,7 +18,7 @@ export const TitlePage = styled.h1`
   line-height: 88px;
   letter-spacing: -0.05em;
   color: #27187e;
-  margin-left: 30px;
+  margin-left: 50px;
   margin-top: 20px;Ò
 `
 
@@ -43,7 +43,7 @@ export default function EpisodesToSee() {
   console.log('series', series)
   return (
     <div>
-      <TitlePage>À voir</TitlePage>
+      <TitlePage>À Voir</TitlePage>
       <div>
         {series.map((serie, index) => (
           <EpisodeToSeeCard

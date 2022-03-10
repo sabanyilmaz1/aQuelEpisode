@@ -46,7 +46,7 @@ export const ProgressionText = styled.span`
   height: 28px;
   font-family: Bebas Neue;
   font-size: 20px;
-  color: #000000;
+  color: #f1f2f6;
 `
 export const ProgressionContainer = styled.div`
   flex-direction: column;

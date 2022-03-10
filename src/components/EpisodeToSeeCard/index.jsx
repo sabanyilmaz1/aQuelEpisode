@@ -7,7 +7,6 @@ import {
   orderBy,
   doc,
   updateDoc,
-  getDoc,
 } from 'firebase/firestore'
 
 import { db } from '../../firebase-config'
@@ -21,6 +20,8 @@ import {
   PictureStyle,
 } from './style'
 import { SeriesTitle } from '../MySeriesCard/style'
+
+import './style.css'
 
 export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
   const { currentUser } = useContext(UserContext) //Recupere les informations sur l'utilisateur connecté
@@ -47,7 +48,7 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
       }
     )
     return unsubscribe
-  }, [])
+  }, [idUserConnected, nameSeries])
 
   useEffect(() => {
     // Recupere la liste des saisons de l'utilisateur non terminés pour la série donnée
@@ -105,6 +106,7 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
       setChecked(false)
     }
     if (checked) {
+      /*
       let countWatchedSeason = 0
       for (let i = 0; i < seasons.length; i++) {
         if (seasons[0].estRegarde === true) {
@@ -124,7 +126,7 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
         )
         updateDoc(SerieMajRef, { estTermine: true })
       }
-
+      */
       console.log('checked-numEp(0)', numEpisode[0])
       console.log('checked-seasons.nbEp', seasons[0].nombreEpisode)
 

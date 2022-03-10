@@ -17,9 +17,14 @@ export function UserContextProvider(props) {
 
   const [detailsVisible, setDetailsVisible] = useState(false)
   const [idSeriesDetails, setSeriesDetails] = useState()
+  const [idMySeriesDetails, setMySeriesDetails] = useState()
 
   const setIdSeries = (id) => {
     setSeriesDetails(id)
+  }
+
+  const setMySeries = (id) => {
+    setMySeriesDetails(id)
   }
 
   const toogleDetails = (modal) => {
@@ -67,6 +72,8 @@ export function UserContextProvider(props) {
         toogleDetails,
         idSeriesDetails,
         setIdSeries,
+        idMySeriesDetails,
+        setMySeries,
       }}
     >
       {!loadingData && props.children}

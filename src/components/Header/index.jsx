@@ -9,7 +9,7 @@ import { auth } from '../../firebase-config'
 import { UserContext } from '../../utils/Usercontext'
 
 //Style
-import { NavContainer, TextLink, HomeLogo } from './style'
+import { NavContainer, TextLink, HomeLogo, LogoutBtn } from './style'
 
 //Logo
 import logo from '../../assets/logoHeader.svg'
@@ -56,8 +56,9 @@ function Header() {
           </Link>
           <TextLink>À venir</TextLink>
           <TextLink>Les meilleurs séries</TextLink>
-
-          <TextLink onClick={logOut}>Se deconnecter</TextLink>
+          <LogoutBtn>
+            <TextLink onClick={logOut}>Se deconnecter</TextLink>
+          </LogoutBtn>
         </NavContainer>
       )}
     </>

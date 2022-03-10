@@ -15,15 +15,18 @@ export const PictureStyle = styled.img`
   height: 200px;
   margin: 20px;
   border-radius: 20px;
+  border: 5px solid #f1f2f6;
 `
 export const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 10px;
+  margin-right: 10px;
+  width: 300px;
 `
 export const SeriesTitle = styled.h2`
   font-family: Bebas Neue;
-  font-size: 46px;
+  font-size: 40px;
   line-height: 43px;
   color: #f1f2f6;
 `
@@ -35,10 +38,10 @@ export const InfoText = styled.span`
   line-height: 33px;
   color: #000000;
 `
-export const CheckboxInput = styled.input`
-  width: 105px;
-  height: 92px;
-`
+export const CheckboxInput = styled.input``
 export const CheckboxContainer = styled.div`
-  border-radius: 20px;
+  margin-left: 500px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  align-self: center;
 `
