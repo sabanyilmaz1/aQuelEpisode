@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useContext } from 'react'
 
 import {
@@ -6,7 +6,6 @@ import {
   CenterDiv,
   CloseBtn,
   CloseDiv,
-  Element,
   LeftDiv,
   OverviewSeries,
   PictureSeries,
@@ -21,7 +20,6 @@ import {
 import { UserContext } from '../../utils/Usercontext'
 import close from '../../assets/close.svg'
 import axios from 'axios'
-import { useState } from 'react/cjs/react.development'
 
 export default function AddSeriesDetailCard() {
   const { toogleDetails, idSeriesDetails } = useContext(UserContext)
@@ -33,7 +31,7 @@ export default function AddSeriesDetailCard() {
   useEffect(() => {
     getData()
   }, [])
-  console.log(series)
+  //console.log(series)
   async function getData() {
     const reponse = await axios.get(
       `https://api.themoviedb.org/3/tv/${idSeriesDetails}?api_key=e308966c5ea18213912b8a786712b64c&language=fr-FR`

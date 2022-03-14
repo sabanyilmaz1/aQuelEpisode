@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const SeriesContainer = styled.div`
-  width: 347px;
-  height: 594px;
+  width: 250px;
+  height: 480px;
   background: #758bfd;
   border-radius: 25px;
   margin-left: 40px;
@@ -12,28 +12,27 @@ export const SeriesContainer = styled.div`
   margin-right: 50px;
 `
 export const PictureSeries = styled.img`
-  width: 268px;
-  height: 365px;
+  width: 200px;
+  height: 300px;
   max-width: 100%;
   image-rendering: auto;
   margin-top: 15px;
-  margin-left: 39px;
+  margin-left: 25px;
   border-radius: 15px;
   border: 5px solid #f1f2f6;
 `
 
 export const InfoSerieContainer = styled.div`
-  text-align: center;
   width: 322px;
   height: 38px;
-  margin-left: 12px;
-  margin-top: 10px;
+  margin-top: 5px;
+  margin-left: 30px;
 `
 export const SeriesTitle = styled.h2`
   font-family: 'Bebas Neue';
   font-style: normal;
   font-weight: 400;
-  font-size: 36px;
+  font-size: 30px;
   line-height: 43px;
   text-align: center;
 
@@ -47,9 +46,9 @@ export const SeriesInfo = styled.span`
   width: 328px;
   height: 28px;
   font-family: Bebas Neue;
-  font-size: 20px;
+  font-size: 15px;
   color: #000000;
-  margin-top: 10px;
+  margin-top: 5px;
 `
 export const ProgressionText = styled.span`
   width: 328px;
@@ -59,11 +58,7 @@ export const ProgressionText = styled.span`
   color: #f1f2f6;
 `
 export const ProgressionContainer = styled.div`
-  margin-top: 10px;
-`
-export const ProgressionBar = styled.progress`
-  width: 300px;
-  height: 40px;
+  margin-top: 5px;
 `
 
 export const DeleteText = styled.span`
@@ -76,7 +71,19 @@ export const DeleteText = styled.span`
 export const DeleteBtn = styled.button`
   background: #ff8600;
   border-radius: 20px;
-  margin-left: 172px;
-  margin-top: 20px;
+  margin-left: 80px;
+  margin-top: 10px;
   margin-right: 20px;
+`
+export const TitleBtn = styled.button`
+  background: transparent;
+  border: none !important;
+  cursor: pointer;
+  transition: 0.2s;
+  &:hover {
+    background: rgba(255, 134, 0, 0.5);
+  }
+  &:active {
+    transform: scale(1.03) translateX(-10%);
+  }
 `

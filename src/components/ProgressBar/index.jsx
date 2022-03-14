@@ -2,13 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 
 export default function ProgressBar({ maxValue, value }) {
-  console.log(typeof maxValue)
   let percent = parseInt((value / maxValue) * 100)
-  console.log(percent)
 
   const containerStyles = {
-    height: 30,
-    width: '100%',
+    height: '20%',
+    width: '60%',
     backgroundColor: 'white',
     borderRadius: 50,
     //margin: 50,
@@ -23,10 +21,10 @@ export default function ProgressBar({ maxValue, value }) {
   }
 
   const labelStyles = {
-    padding: 5,
+    padding: 10,
     color: 'black',
     fontWeight: 'bold',
-    fontSize: '20px',
+    fontSize: '15px',
   }
 
   return (

@@ -14,7 +14,8 @@ export const TextLink = styled.span`
   font-weight: bold;
   color: #f1f2f6;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 17px;
+  margin-left: 25px;
 `
 export const HomeLogo = styled.img`
   height: 65px;
@@ -23,4 +24,9 @@ export const HomeLogo = styled.img`
 export const LogoutBtn = styled.button`
   background: transparent;
   border: 0px;
+`
+export const LogoDiv = styled.div``
+export const LinkDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
 `

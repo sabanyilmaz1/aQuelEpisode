@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import ProgressBar from '../ProgressBar'
 
+import { Link, useNavigate } from 'react-router-dom'
 //Style
 import {
   SeriesContainer,
@@ -9,12 +10,12 @@ import {
   SeriesTitle,
   SeriesItems,
   SeriesInfo,
-  ProgressionText,
   ProgressionContainer,
-  ProgressionBar,
   DeleteText,
   DeleteBtn,
+  TitleBtn,
 } from './style'
+import MySeriesInDetail from '../../pages/Private/MySeriesInDetail'
 
 export default function MySeries({
   nameSeries,
@@ -24,6 +25,16 @@ export default function MySeries({
   numberEpisodes,
   numberWatchedEpisodes,
 }) {
+  const navigate = useNavigate()
+
+  const [clicked, setClicked] = useState(false)
+
+  const clickedAndRedirect = () => {
+    setClicked(true)
+    console.log(clicked)
+    navigate('details', { state: { data: nameSeries } })
+  }
+
   return (
     <div>
       <SeriesContainer>
@@ -33,7 +44,11 @@ export default function MySeries({
           </DeleteBtn>
           <PictureSeries src={pictureSeries} />
           <InfoSerieContainer>
-            <SeriesTitle>{nameSeries}</SeriesTitle>
+            <div>
+              <TitleBtn onClick={() => clickedAndRedirect()}>
+                <SeriesTitle>{nameSeries}</SeriesTitle>
+              </TitleBtn>
+            </div>
             <SeriesInfo>
               {numberSeasons} saisons - {channelSeries}{' '}
             </SeriesInfo>

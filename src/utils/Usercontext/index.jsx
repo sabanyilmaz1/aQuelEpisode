@@ -17,7 +17,7 @@ export function UserContextProvider(props) {
 
   const [detailsVisible, setDetailsVisible] = useState(false)
   const [idSeriesDetails, setSeriesDetails] = useState()
-  const [idMySeriesDetails, setMySeriesDetails] = useState()
+  const [idMySeriesDetails, setMySeriesDetails] = useState('default')
 
   const setIdSeries = (id) => {
     setSeriesDetails(id)

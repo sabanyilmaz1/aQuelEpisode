@@ -41,8 +41,13 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
 
   //console.log(series)
 
-  const { currentUser, toogleDetails, detailsVisible, setIdSeries } =
-    useContext(UserContext)
+  const {
+    currentUser,
+    toogleDetails,
+    detailsVisible,
+    setIdSeries,
+    idSeriesDetails,
+  } = useContext(UserContext)
   const idUserConnected = currentUser.uid
 
   const IMG_API = 'http://image.tmdb.org/t/p/w500'
@@ -193,6 +198,7 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
   const toogleDetailsSeries = () => {
     toogleDetails('afficheDetails')
     setIdSeries(idSerie)
+    console.log(idSeriesDetails)
   }
 
   //console.log(idSeriesDetails)

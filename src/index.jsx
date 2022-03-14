@@ -10,6 +10,7 @@ import PrivateHome from './pages/Private/PrivateHome'
 import MySeries from './pages/Private/MySeries'
 import AddSeries from './pages/Private/AddSeries'
 import EpisodesToSee from './pages/Private/EpisodesToSee'
+import MySeriesInDetail from './pages/Private/MySeriesInDetail'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,13 +18,26 @@ ReactDOM.render(
       <UserContextProvider>
         <Header />
         <Routes>
-          <Route path="/" element={<HomeSignIn />} />
-          <Route path="/inscription" element={<SignUp />} />
-          <Route path="/private" element={<Private />}>
-            <Route path="/private/private-home" element={<PrivateHome />} />
-            <Route path="/private/myseries" element={<MySeries />} />
-            <Route path="/private/addseries" element={<AddSeries />} />
-            <Route path="/private/episodestosee" element={<EpisodesToSee />} />
+          <Route exact path="/" element={<HomeSignIn />} />
+          <Route exact path="/inscription" element={<SignUp />} />
+          <Route exact path="/private" element={<Private />}>
+            <Route
+              exact
+              path="/private/private-home"
+              element={<PrivateHome />}
+            />
+            <Route exact path="/private/myseries" element={<MySeries />} />
+            <Route exact path="/private/addseries" element={<AddSeries />} />
+            <Route
+              exact
+              path="/private/episodestosee"
+              element={<EpisodesToSee />}
+            />
+            <Route
+              exact
+              path="/private/myseries/details"
+              element={<MySeriesInDetail />}
+            />
           </Route>
         </Routes>
       </UserContextProvider>

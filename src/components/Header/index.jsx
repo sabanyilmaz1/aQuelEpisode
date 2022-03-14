@@ -9,7 +9,7 @@ import { auth } from '../../firebase-config'
 import { UserContext } from '../../utils/Usercontext'
 
 //Style
-import { NavContainer, TextLink, HomeLogo, LogoutBtn } from './style'
+import { NavContainer, TextLink, HomeLogo, LogoutBtn, LogoDiv } from './style'
 
 //Logo
 import logo from '../../assets/logoHeader.svg'
@@ -40,25 +40,29 @@ function Header() {
     <>
       {displayHeader && (
         <NavContainer>
-          <Link to="/private/private-home">
-            <HomeLogo src={logo} />
-          </Link>
+          <LogoDiv>
+            <Link to="/private/private-home">
+              <HomeLogo src={logo} />
+            </Link>
+          </LogoDiv>
 
-          <Link to="/private/addseries">
-            <TextLink>Ajouter une série</TextLink>
-          </Link>
+          <TextLink>
+            <Link to="/private/addseries">
+              <TextLink>Ajouter une série</TextLink>
+            </Link>
 
-          <Link to="/private/myseries">
-            <TextLink>Mes Séries</TextLink>
-          </Link>
-          <Link to="/private/episodestosee">
-            <TextLink>À voir</TextLink>
-          </Link>
-          <TextLink>À venir</TextLink>
-          <TextLink>Les meilleurs séries</TextLink>
-          <LogoutBtn>
-            <TextLink onClick={logOut}>Se deconnecter</TextLink>
-          </LogoutBtn>
+            <Link to="/private/myseries">
+              <TextLink>Mes Séries</TextLink>
+            </Link>
+            <Link to="/private/episodestosee">
+              <TextLink>À voir</TextLink>
+            </Link>
+            <TextLink>À venir</TextLink>
+            <TextLink>Les meilleurs séries</TextLink>
+            <LogoutBtn>
+              <TextLink onClick={logOut}>Se deconnecter</TextLink>
+            </LogoutBtn>
+          </TextLink>
         </NavContainer>
       )}
     </>

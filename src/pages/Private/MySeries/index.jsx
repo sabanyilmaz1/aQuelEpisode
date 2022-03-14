@@ -29,7 +29,7 @@ export default function MySeries() {
     return unsubscribe
   }, [])
 
-  console.log(series)
+  //console.log(series)
   return (
     <PageDiv>
       <TitlePage>Mes Séries</TitlePage>
