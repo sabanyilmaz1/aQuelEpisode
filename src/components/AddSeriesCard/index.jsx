@@ -100,7 +100,12 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
         const numSaison = seasonsSerie[i].season_number
         const nombreEpisode = seasonsSerie[i].episode_count
         const estRegarde = false
-        const Saison = { numSaison, nombreEpisode, estRegarde }
+        const Saison = {
+          numSaison,
+          nombreEpisode,
+          estRegarde,
+          nombreEpisodeRegarde: 0,
+        }
 
         addSeasons(idUserConnected, Serie.nomSerie, Saison)
 
@@ -137,7 +142,12 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
         const nombreEpisode = seasonsSerie[i].episode_count
         const estRegarde = false
 
-        const Saison = { numSaison, nombreEpisode, estRegarde }
+        const Saison = {
+          numSaison,
+          nombreEpisode,
+          estRegarde,
+          nombreEpisodeRegarde: 0,
+        }
         addSeasons(idUserConnected, Serie.nomSerie, Saison)
 
         // Ajout des épisodes

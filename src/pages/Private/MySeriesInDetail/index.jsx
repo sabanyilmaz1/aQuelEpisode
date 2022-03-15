@@ -16,12 +16,17 @@ import {
 } from './style'
 
 import SeasonCard from '../../../components/SeasonCard'
-import ProgressBar from '../../../components/ProgressBar'
 
 import { useLocation } from 'react-router-dom'
 import { UserContext } from '../../../utils/Usercontext'
 
-import { onSnapshot, collection, query, where } from 'firebase/firestore'
+import {
+  onSnapshot,
+  collection,
+  query,
+  where,
+  orderBy,
+} from 'firebase/firestore'
 import { db } from '../../../firebase-config'
 import { ProgressionContainer } from '../../../components/MySeriesCard/style'
 
@@ -33,6 +38,7 @@ export default function MySeriesInDetail() {
   const { currentUser } = useContext(UserContext)
   const idUserConnected = currentUser.uid
   const [series, setSeries] = useState([])
+  const [seasons, setSeasons] = useState([])
 
   useEffect(() => {
     // Recupere la liste des séries de l'utilisateur non terminés
@@ -48,7 +54,29 @@ export default function MySeriesInDetail() {
     return unsubscribe
   }, [])
 
+  useEffect(() => {
+    // Recupere la liste des séries de l'utilisateur non terminés
+    const unsubscribe = onSnapshot(
+      query(
+        collection(
+          db,
+          'Utilisateurs',
+          idUserConnected,
+          'Series',
+          id,
+          'Saisons'
+        ),
+        orderBy('numSaison')
+      ),
+      (season) => {
+        setSeasons(season.docs.map((doc) => doc.data()))
+      }
+    )
+    return unsubscribe
+  }, [])
+
   console.log(series)
+  console.log(seasons)
 
   return (
     <div>
@@ -71,11 +99,14 @@ export default function MySeriesInDetail() {
           </PictureAndProgressDiv>
         </FirstContainer>
         <SecondContainer>
-          <SeasonCard />
-          <SeasonCard />
-          <SeasonCard />
-          <SeasonCard />
-          <SeasonCard />
+          {seasons.map((season, index) => (
+            <SeasonCard
+              key={`${season.numSaison}-${index}`}
+              numSeason={season.numSaison}
+              numMaxEpisode={season.nombreEpisode}
+              numEpisode={season.nombreEpisodeRegarde}
+            />
+          ))}
         </SecondContainer>
       </WrapTwoContainer>
     </div>

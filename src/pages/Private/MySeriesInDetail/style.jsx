@@ -46,17 +46,18 @@ export const PictureAndProgressDiv = styled.div`
   justify-content: space-between;
 `
 export const InfoDiv = styled.div`
-  width: 80%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   margin-top: 15px;
-  margin-left: 15px;
+  margin-left: 30px;
 `
 
 export const PictureStyle = styled.img`
-  width: 15%;
-  height: 10%;
-  margin-top: 15px;
+  width: 18%;
+  max-width: 200px;
+  height: 20%;
+  margin-top: 10px;
   margin-left: 15px;
   border-radius: 15px;
   border: 5px solid #f1f2f6;
@@ -80,12 +81,12 @@ export const OverviewStyle = styled.span`
   font-family: 'Montserrat';
   font-style: normal;
 
-  font-size: 24px;
+  font-size: 18px;
   color: #f1f2f6;
 `
 
 export const OverviewDiv = styled.div`
-  width: 100%;
+  width: 90%;
   height: 20%;
   margin-top: 20px;
 `

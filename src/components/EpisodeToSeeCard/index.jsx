@@ -100,33 +100,14 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
 
   console.log('unchecked-numEp(0)', numEpisode[0])
 
+  //Mettre à jour la BD
+
   useEffect(() => {
     let estTermine = false
     if (estTermine === false) {
       setChecked(false)
     }
     if (checked) {
-      /*
-      let countWatchedSeason = 0
-      for (let i = 0; i < seasons.length; i++) {
-        if (seasons[0].estRegarde === true) {
-          countWatchedSeason = countWatchedSeason + 1
-        }
-      }
-      if (countWatchedSeason === seasons.length) {
-        //Serie terminée
-        //MAj dans la BD
-        console.log('serie terminée')
-        const SerieMajRef = doc(
-          db,
-          'Utilisateurs',
-          idUserConnected,
-          'Series',
-          nameSeries
-        )
-        updateDoc(SerieMajRef, { estTermine: true })
-      }
-      */
       console.log('checked-numEp(0)', numEpisode[0])
       console.log('checked-seasons.nbEp', seasons[0].nombreEpisode)
 
@@ -138,12 +119,6 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
           'Series',
           nameSeries
         )
-        const compteur = series[0].nombreEpisodeRegarde
-        console.log('compteur', compteur)
-        updateDoc(SerieMajRef, { nombreEpisodeRegarde: compteur + 1 })
-        //Saison Terminée
-        console.log('Saison terminée')
-        //Mettre à jour la saison sur la BD
         const SaisonMajRef = doc(
           db,
           'Utilisateurs',
@@ -153,9 +128,31 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
           'Saisons',
           `Saison ${numSeason[0]}`
         )
-        updateDoc(SaisonMajRef, { estRegarde: true })
+        const compteur = series[0].nombreEpisodeRegarde
+        const compteurSeason = seasons[0].nombreEpisodeRegarde
+        console.log('compteur', compteur)
+        updateDoc(SerieMajRef, { nombreEpisodeRegarde: compteur + 1 })
+        updateDoc(SaisonMajRef, { nombreEpisodeRegarde: compteurSeason + 1 })
+        //Saison Terminée
+        console.log('Saison terminée')
+        //Mettre à jour la saison sur la BD
+
+        updateDoc(SaisonMajRef, {
+          estRegarde: true,
+          nombreEpisodeRegarde: compteurSeason + 1,
+        })
       } else if (numEpisode[0] !== seasons[0].nombreEpisode) {
         //Saison non terminée
+        const SaisonMajRef = doc(
+          db,
+          'Utilisateurs',
+          idUserConnected,
+          'Series',
+          nameSeries,
+          'Saisons',
+          `Saison ${numSeason[0]}`
+        )
+
         const EpisodeMajRef = doc(
           db,
           'Utilisateurs',
@@ -176,8 +173,10 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
           nameSeries
         )
         const compteur = series[0].nombreEpisodeRegarde
+        const compteurSeason = seasons[0].nombreEpisodeRegarde
         console.log('compteur', compteur)
         updateDoc(SerieMajRef, { nombreEpisodeRegarde: compteur + 1 })
+        updateDoc(SaisonMajRef, { nombreEpisodeRegarde: compteurSeason + 1 })
       }
     }
   }, [numEpisode, checked])
