@@ -22,6 +22,8 @@ import {
   TitleBtn,
   PageContainer,
 } from './style'
+
+//Component
 import AddSeriesDetailCard from '../../components/AddSeriesDetailCard'
 
 export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
