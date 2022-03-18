@@ -30,7 +30,7 @@ export default function AddSeriesDetailCard() {
 
   useEffect(() => {
     getData()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
   //console.log(series)
   async function getData() {
     const reponse = await axios.get(

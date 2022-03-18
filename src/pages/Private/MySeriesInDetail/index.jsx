@@ -7,7 +7,6 @@ import {
   OverviewStyle,
   PictureAndProgressDiv,
   PictureStyle,
-  SeasonBtn,
   SecondContainer,
   SeriesInfo,
   SeriesTitle,
@@ -50,7 +49,7 @@ export default function MySeriesInDetail() {
       }
     )
     return unsubscribe
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     // Recupere la liste des séries de l'utilisateur non terminés
@@ -71,7 +70,7 @@ export default function MySeriesInDetail() {
       }
     )
     return unsubscribe
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   //console.log(series)
   //console.log(seasons)

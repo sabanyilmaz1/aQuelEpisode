@@ -19,7 +19,7 @@ export const TitlePage = styled.h1`
   letter-spacing: -0.05em;
   color: #27187e;
   margin-left: 50px;
-  margin-top: 20px;Ò
+  margin-top: 20px;
 `
 
 export default function EpisodesToSee() {
@@ -39,7 +39,7 @@ export default function EpisodesToSee() {
       }
     )
     return unsubscribe
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
   console.log('series', series)
   return (
     <div>

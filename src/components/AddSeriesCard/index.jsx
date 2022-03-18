@@ -39,7 +39,7 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
       }
     )
     return unsubscribe
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   //console.log(series)
 
@@ -123,7 +123,9 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
           const numEpisode = dataSeason[j].episode_number
           const dateEpisode = dataSeason[j].air_date
           const nomEpisode = dataSeason[j].name
-
+          const resumeEpisode = dataSeason[j].overview
+          const imageEpisode =
+            'http://image.tmdb.org/t/p/w500/' + dataSeason[j]?.still_path
           //l'attribut estSortie
           const DateNow = new Date()
           const dateNowInFormat = formatDate(DateNow)
@@ -135,6 +137,8 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
             dateEpisode,
             estRegarde: false,
             estSorti,
+            resumeEpisode,
+            imageEpisode,
           }
           addEpisodes(idUserConnected, Serie.nomSerie, Saison, Episode)
         }
@@ -158,13 +162,15 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
         const reponseApiSeason = await axios.get(
           `https://api.themoviedb.org/3/tv/${id}/season/${numSaison}?api_key=e308966c5ea18213912b8a786712b64c&language=fr-FR`
         )
-        const dataSaison = reponseApiSeason.data.episodes
+        const dataSeason = reponseApiSeason.data.episodes
         // On recupere les informations necessaires pour chaque episode
         for (let j = 0; j < nombreEpisode; j++) {
-          const numEpisode = dataSaison[j].episode_number
-          const dateEpisode = dataSaison[j].air_date
-          const nomEpisode = dataSaison[j].name
-
+          const numEpisode = dataSeason[j].episode_number
+          const dateEpisode = dataSeason[j].air_date
+          const nomEpisode = dataSeason[j].name
+          const resumeEpisode = dataSeason[j].overview
+          const imageEpisode =
+            'http://image.tmdb.org/t/p/w500/' + dataSeason[j]?.still_path
           //l'attribut estSortie
           const DateNow = new Date()
           const dateNowInFormat = formatDate(DateNow)
@@ -176,6 +182,8 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
             dateEpisode,
             estRegarde: false,
             estSorti,
+            resumeEpisode,
+            imageEpisode,
           }
           addEpisodes(idUserConnected, Serie.nomSerie, Saison, Episode)
         }

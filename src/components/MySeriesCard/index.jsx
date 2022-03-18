@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import ProgressBar from '../ProgressBar'
 
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 //Style
 import {
   SeriesContainer,
@@ -15,7 +15,6 @@ import {
   DeleteBtn,
   TitleBtn,
 } from './style'
-import MySeriesInDetail from '../../pages/Private/MySeriesInDetail'
 
 export default function MySeries({
   nameSeries,

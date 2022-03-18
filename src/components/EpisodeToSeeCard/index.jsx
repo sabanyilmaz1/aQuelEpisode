@@ -14,7 +14,6 @@ import { UserContext } from '../../utils/Usercontext'
 import {
   CardDiv,
   CheckboxContainer,
-  CheckboxInput,
   InfoContainer,
   InfoText,
   PictureStyle,
@@ -28,7 +27,7 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
   const idUserConnected = currentUser.uid
   const [series, setSeries] = useState([{}])
   const [seasons, setSeasons] = useState([{}])
-  const [episodes, setEpisodes] = useState([{}])
+  const [episodes, setEpisodes] = useState([{}]) // eslint-disable-line no-unused-vars
   const [numSeason, setNumSeason] = useState([])
   const [numEpisode, setNumEpisode] = useState([])
 
@@ -71,7 +70,7 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
       }
     )
     return unsubscribe
-  }, [series])
+  }, [series]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     // Recupere la liste des séries de l'utilisateur non terminés
@@ -96,7 +95,7 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
       }
     )
     return unsubscribe
-  }, [numSeason])
+  }, [numSeason]) // eslint-disable-line react-hooks/exhaustive-deps
 
   console.log('unchecked-numEp(0)', numEpisode[0])
 
@@ -179,7 +178,7 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
         updateDoc(SaisonMajRef, { nombreEpisodeRegarde: compteurSeason + 1 })
       }
     }
-  }, [numEpisode, checked])
+  }, [numEpisode, checked]) // eslint-disable-line react-hooks/exhaustive-deps
 
   console.log('nbER', series[0].nombreEpisodeRegarde)
   console.log('nbE', series[0].nombreEpisode)

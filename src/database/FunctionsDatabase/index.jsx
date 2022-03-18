@@ -6,7 +6,6 @@ import {
   doc,
   setDoc,
   query,
-  where,
 } from 'firebase/firestore'
 
 import { db } from '../../firebase-config'
@@ -81,9 +80,4 @@ export function addEpisodes(idUser, idSerie, season, newEpisode) {
     idEpisode
   )
   return setDoc(EpisodeRef, newEpisode)
-}
-
-export function getFirstEpisodeToWatch(idUser, idSerie, idSeason) {
-  //Recherche de la saison du prochaine épisode à voir
-  const q = query(collection(db, 'Utilisateurs'))
 }

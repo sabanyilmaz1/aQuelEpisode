@@ -1,9 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../../utils/Usercontext'
 
-// Fonction Firebase
-import { getAllSeriesByUser } from '../../../database/FunctionsDatabase'
-
 //Components
 import MySeriesCard from '../../../components/MySeriesCard'
 
@@ -27,7 +24,7 @@ export default function MySeries() {
       }
     )
     return unsubscribe
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   //console.log(series)
   return (
