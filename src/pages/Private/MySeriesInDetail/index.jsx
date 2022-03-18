@@ -7,6 +7,7 @@ import {
   OverviewStyle,
   PictureAndProgressDiv,
   PictureStyle,
+  SeasonBtn,
   SecondContainer,
   SeriesInfo,
   SeriesTitle,
@@ -28,11 +29,9 @@ import {
   orderBy,
 } from 'firebase/firestore'
 import { db } from '../../../firebase-config'
-import { ProgressionContainer } from '../../../components/MySeriesCard/style'
 
 export default function MySeriesInDetail() {
   const { state } = useLocation()
-  console.log(state.data)
   const id = state.data
 
   const { currentUser } = useContext(UserContext)
@@ -41,7 +40,6 @@ export default function MySeriesInDetail() {
   const [seasons, setSeasons] = useState([])
 
   useEffect(() => {
-    // Recupere la liste des séries de l'utilisateur non terminés
     const unsubscribe = onSnapshot(
       query(
         collection(db, 'Utilisateurs', idUserConnected, 'Series'),
@@ -75,8 +73,8 @@ export default function MySeriesInDetail() {
     return unsubscribe
   }, [])
 
-  console.log(series)
-  console.log(seasons)
+  //console.log(series)
+  //console.log(seasons)
 
   return (
     <div>
@@ -105,6 +103,7 @@ export default function MySeriesInDetail() {
               numSeason={season.numSaison}
               numMaxEpisode={season.nombreEpisode}
               numEpisode={season.nombreEpisodeRegarde}
+              idSerie={season.nomSerie}
             />
           ))}
         </SecondContainer>

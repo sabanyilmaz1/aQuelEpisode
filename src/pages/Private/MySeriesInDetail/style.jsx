@@ -94,3 +94,22 @@ export const OverviewDiv = styled.div`
 export const ProgressionContainer = styled.div`
   width: 10%;
 `
+export const SeasonBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
+  margin-top: 20px;
+  width: 20%;
+  height: 20%;
+  background: transparent;
+  border: none !important;
+  cursor: pointer;
+  transition: 0.2s;
+  &:hover {
+    background: rgba(255, 134, 0, 0.5);
+  }
+  &:active {
+    transform: scale(1.03) translateX(-10%);
+  }
+`

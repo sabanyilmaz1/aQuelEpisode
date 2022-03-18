@@ -11,6 +11,7 @@ import MySeries from './pages/Private/MySeries'
 import AddSeries from './pages/Private/AddSeries'
 import EpisodesToSee from './pages/Private/EpisodesToSee'
 import MySeriesInDetail from './pages/Private/MySeriesInDetail'
+import SeasonInDetail from './pages/Private/SeasonInDetail'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -37,6 +38,11 @@ ReactDOM.render(
               exact
               path="/private/myseries/details"
               element={<MySeriesInDetail />}
+            />
+            <Route
+              exact
+              path="/private/myseries/details/season"
+              element={<SeasonInDetail />}
             />
           </Route>
         </Routes>

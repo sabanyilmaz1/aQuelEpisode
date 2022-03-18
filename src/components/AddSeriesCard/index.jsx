@@ -107,6 +107,7 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
           nombreEpisode,
           estRegarde,
           nombreEpisodeRegarde: 0,
+          nomSerie,
         }
 
         addSeasons(idUserConnected, Serie.nomSerie, Saison)
@@ -149,6 +150,7 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
           nombreEpisode,
           estRegarde,
           nombreEpisodeRegarde: 0,
+          nomSerie,
         }
         addSeasons(idUserConnected, Serie.nomSerie, Saison)
 

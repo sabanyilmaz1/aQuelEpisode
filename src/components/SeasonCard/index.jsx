@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 
 const SeasonWrap = styled.div`
   width: 25%;
@@ -38,8 +40,27 @@ const SeasonText = styled.span`
   line-height: 43px;
   color: #000000;
 `
+export const SeasonBtn = styled.button`
+  background: transparent;
+  border: none !important;
+  cursor: pointer;
+  transition: 0.2s;
+  &:hover {
+    background: rgba(255, 134, 0, 0.5);
+  }
+  &:active {
+    transform: scale(1.03) translateX(-10%);
+  }
+`
 
-export default function SeasonCard({ numSeason, numEpisode, numMaxEpisode }) {
+export default function SeasonCard({
+  numSeason,
+  numEpisode,
+  numMaxEpisode,
+  idSerie,
+}) {
+  const [clicked, setClicked] = useState(false)
+  const navigate = useNavigate()
   const quotient = numEpisode / numMaxEpisode
   let isFinish = false
   let notStarted = false
@@ -55,27 +76,39 @@ export default function SeasonCard({ numSeason, numEpisode, numMaxEpisode }) {
   }
   console.log('quotient', quotient)
 
+  const clickedAndRedirect = () => {
+    setClicked(true)
+    console.log(clicked)
+    navigate('season', { state: { numSeason: numSeason, idSerie: idSerie } })
+  }
+
   return (
     <>
       {isFinish && (
         <SeasonWrap>
-          <SeasonText>
-            Saison {numSeason} - {numEpisode}/{numMaxEpisode}
-          </SeasonText>
+          <SeasonBtn onClick={() => clickedAndRedirect()}>
+            <SeasonText>
+              Saison {numSeason} - {numEpisode}/{numMaxEpisode}
+            </SeasonText>
+          </SeasonBtn>
         </SeasonWrap>
       )}
       {notFinish && (
         <SeasonWrapNotFinish>
-          <SeasonText>
-            Saison {numSeason} - {numEpisode}/{numMaxEpisode}
-          </SeasonText>
+          <SeasonBtn onClick={() => clickedAndRedirect()}>
+            <SeasonText>
+              Saison {numSeason} - {numEpisode}/{numMaxEpisode}
+            </SeasonText>
+          </SeasonBtn>
         </SeasonWrapNotFinish>
       )}
       {notStarted && (
         <SeasonWrapNotStarted>
-          <SeasonText>
-            Saison {numSeason} - {numEpisode}/{numMaxEpisode}
-          </SeasonText>
+          <SeasonBtn onClick={() => clickedAndRedirect()}>
+            <SeasonText>
+              Saison {numSeason} - {numEpisode}/{numMaxEpisode}
+            </SeasonText>
+          </SeasonBtn>
         </SeasonWrapNotStarted>
       )}
     </>
