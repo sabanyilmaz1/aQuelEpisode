@@ -14,6 +14,8 @@ import {
   DeleteText,
   DeleteBtn,
   TitleBtn,
+  SeriesInfoContainer,
+  SeriesTitleContainer,
 } from './style'
 
 export default function MySeries({
@@ -43,14 +45,17 @@ export default function MySeries({
           </DeleteBtn>
           <PictureSeries src={pictureSeries} />
           <InfoSerieContainer>
-            <div>
+            <SeriesTitleContainer>
               <TitleBtn onClick={() => clickedAndRedirect()}>
                 <SeriesTitle>{nameSeries}</SeriesTitle>
               </TitleBtn>
-            </div>
-            <SeriesInfo>
-              {numberSeasons} saisons - {channelSeries}{' '}
-            </SeriesInfo>
+            </SeriesTitleContainer>
+
+            <SeriesInfoContainer>
+              <SeriesInfo>
+                {numberSeasons} saisons - {channelSeries}{' '}
+              </SeriesInfo>
+            </SeriesInfoContainer>
             <ProgressionContainer>
               <ProgressBar
                 maxValue={numberEpisodes}

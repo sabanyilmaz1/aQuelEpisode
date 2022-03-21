@@ -57,7 +57,9 @@ function Header() {
             <Link to="/private/episodestosee">
               <TextLink>À voir</TextLink>
             </Link>
-            <TextLink>À venir</TextLink>
+            <Link to="/private/episodescomingsoon">
+              <TextLink>À venir</TextLink>
+            </Link>
             <TextLink>Les meilleurs séries</TextLink>
             <LogoutBtn>
               <TextLink onClick={logOut}>Se deconnecter</TextLink>

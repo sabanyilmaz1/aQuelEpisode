@@ -25,19 +25,25 @@ export const PictureSeries = styled.img`
 export const InfoSerieContainer = styled.div`
   width: 322px;
   height: 38px;
-  margin-top: 5px;
-  margin-left: 30px;
+  margin-top: 1px;
+  margin-left: 0px;
 `
 export const SeriesTitle = styled.h2`
   font-family: 'Bebas Neue';
   font-style: normal;
   font-weight: 400;
-  font-size: 30px;
+  font-size: 25px;
   line-height: 43px;
   text-align: center;
-
   color: #f1f2f6;
 `
+
+export const SeriesTitleContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 70%;
+`
+
 export const SeriesItems = styled.div`
   display: flex;
   flex-direction: column;
@@ -46,9 +52,12 @@ export const SeriesInfo = styled.span`
   width: 328px;
   height: 28px;
   font-family: Bebas Neue;
-  font-size: 15px;
+  font-size: 19px;
   color: #000000;
-  margin-top: 5px;
+`
+export const SeriesInfoContainer = styled.div`
+  margin-top: 1px;
+  margin-left: 15%;
 `
 export const ProgressionText = styled.span`
   width: 328px;
@@ -58,7 +67,8 @@ export const ProgressionText = styled.span`
   color: #f1f2f6;
 `
 export const ProgressionContainer = styled.div`
-  margin-top: 5px;
+  margin-top: 1px;
+  margin-left: 10%;
 `
 
 export const DeleteText = styled.span`

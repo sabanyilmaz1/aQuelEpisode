@@ -87,6 +87,7 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
           'Episodes'
         ),
         where('estRegarde', '==', false),
+        //where('estSorti', '==', false),
         orderBy('numEpisode')
       ),
       (episode) => {

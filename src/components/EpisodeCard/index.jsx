@@ -19,7 +19,7 @@ export default function EpisodeCard({
       <PictureStyle src={photoEpisode} alt="ImageEpisode" />
       <InfoDiv>
         <FirstInfo>
-          Episode {numEpisode} - " {nomEpisode} "
+          Episode {numEpisode} - {nomEpisode}
         </FirstInfo>
         <SecondInfo>{resumeEpisode}</SecondInfo>
       </InfoDiv>

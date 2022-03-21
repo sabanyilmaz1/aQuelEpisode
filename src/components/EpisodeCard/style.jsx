@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const EpisodeWrap = styled.div`
-  width: 1361px;
-  height: 235px;
+  width: 90%;
+  height: 30%px;
   background: #758bfd;
   border-radius: 20px;
   margin-bottom: 40px;

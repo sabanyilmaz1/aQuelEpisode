@@ -12,6 +12,7 @@ import AddSeries from './pages/Private/AddSeries'
 import EpisodesToSee from './pages/Private/EpisodesToSee'
 import MySeriesInDetail from './pages/Private/MySeriesInDetail'
 import SeasonInDetail from './pages/Private/SeasonInDetail'
+import ComingSoon from './pages/Private/ComingSoon'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -43,6 +44,11 @@ ReactDOM.render(
               exact
               path="/private/myseries/details/season"
               element={<SeasonInDetail />}
+            />
+            <Route
+              exact
+              path="/private/episodescomingsoon"
+              element={<ComingSoon />}
             />
           </Route>
         </Routes>
