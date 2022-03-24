@@ -76,7 +76,7 @@ export default function ComingSoon() {
 
   return (
     <div>
-      <TitlePage>À venir</TitlePage>
+      <TitlePage>À Venir</TitlePage>
       <div>
         <AllEpisodes>
           {episodes.map((episode, index) => (

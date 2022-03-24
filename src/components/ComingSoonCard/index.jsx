@@ -61,28 +61,35 @@ export default function ComingSoonCard({
   )
   console.log(count)
 
+  let DeleteEpisode = false
+  if (count < 0) {
+    DeleteEpisode = true
+  }
+
   return (
     <div>
-      <EpisodeWrap>
-        <PhotoContainer>
-          <PictureStyle src={picture[0]?.imageSerie} />
-        </PhotoContainer>
-        <InfoContainer>
-          <FirstInfoContainer>
-            <FirstInfo>{nomSerie}</FirstInfo>
-          </FirstInfoContainer>
+      {!DeleteEpisode && (
+        <EpisodeWrap>
+          <PhotoContainer>
+            <PictureStyle src={picture[0]?.imageSerie} />
+          </PhotoContainer>
+          <InfoContainer>
+            <FirstInfoContainer>
+              <FirstInfo>{nomSerie}</FirstInfo>
+            </FirstInfoContainer>
 
-          <SecondContainer>
-            <SecondInfo>
-              Saison {numSaison} - Episode {numEpisode}
-            </SecondInfo>
-          </SecondContainer>
-        </InfoContainer>
-        <DateContainer>
-          <CountStyle>{count} J</CountStyle>
-          <DateStyle>{dateEpStr}</DateStyle>
-        </DateContainer>
-      </EpisodeWrap>
+            <SecondContainer>
+              <SecondInfo>
+                Saison {numSaison} - Episode {numEpisode}
+              </SecondInfo>
+            </SecondContainer>
+          </InfoContainer>
+          <DateContainer>
+            <CountStyle>{count} J</CountStyle>
+            <DateStyle>{dateEpStr}</DateStyle>
+          </DateContainer>
+        </EpisodeWrap>
+      )}
     </div>
   )
 }

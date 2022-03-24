@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const EpisodeWrap = styled.div`
   width: 90%;
-  height: 30%px;
+  height: 250px;
   background: #758bfd;
   border-radius: 20px;
   margin-bottom: 40px;
@@ -34,12 +34,14 @@ export const FirstInfo = styled.h2`
   line-height: 29px;
   color: #f1f2f6;
 `
+export const FirstInfoContainer = styled.div``
+
 export const SecondInfo = styled.span`
   height: 127px;
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 22px;
   color: #f1f2f6;
 `

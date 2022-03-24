@@ -2,8 +2,8 @@ import React from 'react'
 import {
   EpisodeWrap,
   FirstInfo,
+  FirstInfoContainer,
   InfoDiv,
-  PictureDiv,
   PictureStyle,
   SecondInfo,
 } from './style'
@@ -21,7 +21,9 @@ export default function EpisodeCard({
         <FirstInfo>
           Episode {numEpisode} - {nomEpisode}
         </FirstInfo>
-        <SecondInfo>{resumeEpisode}</SecondInfo>
+        <FirstInfoContainer>
+          <SecondInfo>{resumeEpisode}</SecondInfo>
+        </FirstInfoContainer>
       </InfoDiv>
     </EpisodeWrap>
   )

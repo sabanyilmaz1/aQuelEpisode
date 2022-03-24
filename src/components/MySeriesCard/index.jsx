@@ -16,6 +16,8 @@ import {
   TitleBtn,
   SeriesInfoContainer,
   SeriesTitleContainer,
+  ItemsCenter,
+  DeleteDiv,
 } from './style'
 
 export default function MySeries({
@@ -37,34 +39,31 @@ export default function MySeries({
   }
 
   return (
-    <div>
-      <SeriesContainer>
-        <SeriesItems>
-          <DeleteBtn>
-            <DeleteText>Supprimer la série </DeleteText>{' '}
-          </DeleteBtn>
+    <SeriesContainer>
+      <DeleteDiv>
+        <DeleteBtn>
+          <DeleteText>Supprimer la série </DeleteText>{' '}
+        </DeleteBtn>
+      </DeleteDiv>
+      <ItemsCenter>
+        <div>
           <PictureSeries src={pictureSeries} />
-          <InfoSerieContainer>
-            <SeriesTitleContainer>
-              <TitleBtn onClick={() => clickedAndRedirect()}>
-                <SeriesTitle>{nameSeries}</SeriesTitle>
-              </TitleBtn>
-            </SeriesTitleContainer>
+        </div>
+        <SeriesTitleContainer>
+          <TitleBtn onClick={() => clickedAndRedirect()}>
+            <SeriesTitle>{nameSeries} > </SeriesTitle>
+          </TitleBtn>
+        </SeriesTitleContainer>
+        <SeriesInfoContainer>
+          <SeriesInfo>
+            {numberSeasons} saisons - {channelSeries}{' '}
+          </SeriesInfo>
+        </SeriesInfoContainer>
+      </ItemsCenter>
 
-            <SeriesInfoContainer>
-              <SeriesInfo>
-                {numberSeasons} saisons - {channelSeries}{' '}
-              </SeriesInfo>
-            </SeriesInfoContainer>
-            <ProgressionContainer>
-              <ProgressBar
-                maxValue={numberEpisodes}
-                value={numberWatchedEpisodes}
-              />
-            </ProgressionContainer>
-          </InfoSerieContainer>
-        </SeriesItems>
-      </SeriesContainer>
-    </div>
+      <ProgressionContainer>
+        <ProgressBar maxValue={numberEpisodes} value={numberWatchedEpisodes} />
+      </ProgressionContainer>
+    </SeriesContainer>
   )
 }

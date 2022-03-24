@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const EpisodeWrap = styled.div`
   width: 1300px;
-  height: 200px;
+  height: 250px;
   background: #758bfd;
   border-radius: 25px;
   display: flex;
@@ -21,11 +21,12 @@ export const DateContainer = styled.div`
   flex-direction: column;
   margin-left: 250px;
   margin-top: 50px;
+  height: 100px;
 `
 
 export const PictureStyle = styled.img`
-  width: 180px;
-  height: 150px;
+  width: 150px;
+  height: 200px;
   margin: 20px;
   border-radius: 20px;
   border: 5px solid #f1f2f6;
@@ -45,7 +46,7 @@ export const FirstInfo = styled.span`
   color: #f1f2f6;
 `
 export const SecondInfo = styled.span`
-  height: 28px;
+  height: 20px;
   font-family: 'Montserrat';
   //font-family: 'Bebas Neue';
   font-style: normal;
