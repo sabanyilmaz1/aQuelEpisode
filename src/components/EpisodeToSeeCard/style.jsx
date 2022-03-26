@@ -41,7 +41,6 @@ export const SeriesTitle = styled.span`
 export const InfoText = styled.span`
   height: 20px;
   font-family: 'Montserrat';
-  //font-family: 'Bebas Neue';
   font-style: normal;
   font-weight: 700;
   font-size: 20px;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import ProgressBar from '../ProgressBar'
 
 import { useNavigate } from 'react-router-dom'
@@ -20,6 +20,10 @@ import {
   DeleteDiv,
 } from './style'
 
+import { doc, deleteDoc } from 'firebase/firestore'
+import { db } from '../../firebase-config'
+import { UserContext } from '../../utils/Usercontext'
+
 export default function MySeries({
   nameSeries,
   numberSeasons,
@@ -37,11 +41,18 @@ export default function MySeries({
     console.log(clicked)
     navigate('details', { state: { data: nameSeries } })
   }
+  const { currentUser } = useContext(UserContext) //Recupere les informations sur l'utilisateur connecté
+  const idUserConnected = currentUser.uid
+  const clickedAndDeleteSeries = async () => {
+    await deleteDoc(
+      doc(db, 'Utilisateurs', idUserConnected, 'Series', nameSeries)
+    )
+  }
 
   return (
     <SeriesContainer>
       <DeleteDiv>
-        <DeleteBtn>
+        <DeleteBtn onClick={() => clickedAndDeleteSeries()}>
           <DeleteText>Supprimer la série </DeleteText>{' '}
         </DeleteBtn>
       </DeleteDiv>

@@ -30,6 +30,8 @@ import {
 
 import './style.css'
 
+import LoaderEpisode from '../../assets/loaderEpisode.gif'
+
 export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
   const { currentUser } = useContext(UserContext) //Recupere les informations sur l'utilisateur connecté
   const idUserConnected = currentUser.uid
@@ -227,6 +229,11 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
 
   return (
     <>
+      {!loadComponent && (
+        <div>
+          <img src={LoaderEpisode} alt="loader" />
+        </div>
+      )}
       {loadComponent && (
         <CardDiv>
           <div>
