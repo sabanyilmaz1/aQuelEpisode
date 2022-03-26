@@ -1,17 +1,16 @@
 import styled from 'styled-components'
 
 export const CardDiv = styled.div`
-  width: 1200px;
+  width: 1300px;
   height: 250px;
   background: #758bfd;
   border-radius: 25px;
-  margin-left: 30px;
-  margin-bottom: 40px;
   display: flex;
+  margin-bottom: 50px;
 `
 
 export const PictureStyle = styled.img`
-  width: 200px;
+  width: 150px;
   height: 200px;
   margin: 20px;
   border-radius: 20px;
@@ -20,28 +19,74 @@ export const PictureStyle = styled.img`
 export const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
-  margin-right: 10px;
-  width: 300px;
+  margin: 20px;
 `
-export const SeriesTitle = styled.h2`
-  font-family: Bebas Neue;
-  font-size: 40px;
-  line-height: 43px;
+export const FirstInfoContainer = styled.div`
+  width: 250px;
+`
+
+export const SecondContainer = styled.div`
+  margin-top: 20px;
+`
+
+export const SeriesTitle = styled.span`
+  height: 49px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 30px;
+  line-height: px;
   color: #f1f2f6;
 `
 export const InfoText = styled.span`
-  font-family: Bebas Neue;
+  height: 20px;
+  font-family: 'Montserrat';
+  //font-family: 'Bebas Neue';
   font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 33px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 29px;
   color: #000000;
 `
-export const CheckboxInput = styled.input``
+
+export const ResumeStyle = styled.span`
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 22px;
+  color: #f1f2f6;
+`
+
+export const ResumeWrapper = styled.div`
+  width: 600px;
+  margin-top: 30px;
+`
+
 export const CheckboxContainer = styled.div`
-  margin-left: 500px;
-  margin-top: 100px;
+  margin-left: 100px;
+  margin-top: 50px;
   margin-bottom: 100px;
-  align-self: center;
+  margin-right: 0px;
+  z-index: 1;
+`
+
+export const ThirdContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const ClickedStyle = styled.div`
+  margin-top: 50px;
+  margin-left: 20px;
+  z-index: 10;
+`
+
+export const ClickedSpan = styled.span`
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 18px;
+  color: #ffffff;
 `

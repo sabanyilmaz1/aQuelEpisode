@@ -14,12 +14,18 @@ export const TitlePage = styled.h1`
   font-family: Montserrat;
   font-style: normal;
   font-weight: bold;
-  font-size: 45px;
+  font-size: 55px;
   line-height: 88px;
   letter-spacing: -0.05em;
   color: #27187e;
-  margin-left: 50px;
+  margin-left: 70px;
   margin-top: 20px;
+`
+
+export const AllEpisodes = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 export default function EpisodesToSee() {
@@ -45,13 +51,15 @@ export default function EpisodesToSee() {
     <div>
       <TitlePage>À Voir</TitlePage>
       <div>
-        {series.map((serie, index) => (
-          <EpisodeToSeeCard
-            key={`${serie.nomSerie}-${index}`}
-            pictureSeries={serie.imageSerie}
-            nameSeries={serie.nomSerie}
-          />
-        ))}
+        <AllEpisodes>
+          {series.map((serie, index) => (
+            <EpisodeToSeeCard
+              key={`${serie.nomSerie}-${index}`}
+              pictureSeries={serie.imageSerie}
+              nameSeries={serie.nomSerie}
+            />
+          ))}
+        </AllEpisodes>
       </div>
     </div>
   )

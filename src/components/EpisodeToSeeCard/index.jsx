@@ -14,11 +14,19 @@ import { UserContext } from '../../utils/Usercontext'
 import {
   CardDiv,
   CheckboxContainer,
+  ClickedHere,
+  ClickedSpan,
+  ClickedStyle,
+  FirstInfoContainer,
   InfoContainer,
   InfoText,
   PictureStyle,
+  ResumeStyle,
+  ResumeWrapper,
+  SecondContainer,
+  SeriesTitle,
+  ThirdContainer,
 } from './style'
-import { SeriesTitle } from '../MySeriesCard/style'
 
 import './style.css'
 
@@ -34,7 +42,12 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
   //Checkbox
   const [checked, setChecked] = useState(false)
 
-  const handleClick = () => setChecked(!checked)
+  const [seconds, setSeconds] = useState(0)
+
+  const handleClick = () => {
+    setChecked(!checked)
+    setSeconds(0)
+  }
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -87,7 +100,7 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
           'Episodes'
         ),
         where('estRegarde', '==', false),
-        //where('estSorti', '==', false),
+        where('estSorti', '==', true),
         orderBy('numEpisode')
       ),
       (episode) => {
@@ -98,18 +111,15 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
     return unsubscribe
   }, [numSeason]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log('unchecked-numEp(0)', numEpisode[0])
+  //console.log('unchecked-numEp(0)', numEpisode[0])
 
   //Mettre à jour la BD
 
   useEffect(() => {
     let estTermine = false
-    if (estTermine === false) {
-      setChecked(false)
-    }
     if (checked) {
-      console.log('checked-numEp(0)', numEpisode[0])
-      console.log('checked-seasons.nbEp', seasons[0].nombreEpisode)
+      // console.log('checked-numEp(0)', numEpisode[0])
+      //console.log('checked-seasons.nbEp', seasons[0].nombreEpisode)
 
       if (numEpisode[0] === seasons[0].nombreEpisode) {
         const SerieMajRef = doc(
@@ -130,11 +140,11 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
         )
         const compteur = series[0].nombreEpisodeRegarde
         const compteurSeason = seasons[0].nombreEpisodeRegarde
-        console.log('compteur', compteur)
+        //console.log('compteur', compteur)
         updateDoc(SerieMajRef, { nombreEpisodeRegarde: compteur + 1 })
         updateDoc(SaisonMajRef, { nombreEpisodeRegarde: compteurSeason + 1 })
         //Saison Terminée
-        console.log('Saison terminée')
+        // console.log('Saison terminée')
         //Mettre à jour la saison sur la BD
 
         updateDoc(SaisonMajRef, {
@@ -174,17 +184,17 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
         )
         const compteur = series[0].nombreEpisodeRegarde
         const compteurSeason = seasons[0].nombreEpisodeRegarde
-        console.log('compteur', compteur)
+        //console.log('compteur', compteur)
         updateDoc(SerieMajRef, { nombreEpisodeRegarde: compteur + 1 })
         updateDoc(SaisonMajRef, { nombreEpisodeRegarde: compteurSeason + 1 })
       }
     }
-  }, [numEpisode, checked]) // eslint-disable-line react-hooks/exhaustive-deps
+    if (estTermine === false) {
+      setChecked(false)
+    }
+  }, [checked, numEpisode, seasons, idUserConnected, numSeason, series]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log('nbER', series[0].nombreEpisodeRegarde)
-  console.log('nbE', series[0].nombreEpisode)
   const estFinie = series[0].nombreEpisodeRegarde === series[0].nombreEpisode
-  console.log(estFinie)
 
   if (
     estFinie === true &&
@@ -198,37 +208,61 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
       'Series',
       nameSeries
     )
-    console.log('je rentre dans la boucle')
+    //console.log('je rentre dans la boucle')
     updateDoc(SerieMajRef, { estTermine: true })
   }
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSeconds((seconds) => seconds + 1)
+    }, 1000)
+    return () => clearInterval(interval)
+  })
+  let loadComponent = false
+  if (seconds > 1) {
+    loadComponent = true
+  }
+
+  console.log(seconds)
+
   return (
-    <CardDiv>
-      <div>
-        <PictureStyle src={pictureSeries} />
-      </div>
-      <InfoContainer>
-        <SeriesTitle>{nameSeries}</SeriesTitle>
-        <InfoText>
-          Saison {numSeason[0]} - Episode {numEpisode[0]}
-        </InfoText>
-      </InfoContainer>
-      <div>
-        <form>
-          <CheckboxContainer>
-            {!estFinie && (
-              <input
-                onClick={handleClick}
-                checked={checked}
-                type="checkbox"
-                id="estRegarde"
-                name="estRegarde"
-                value="estRegarde"
-              />
-            )}
-          </CheckboxContainer>
-        </form>
-      </div>
-    </CardDiv>
+    <>
+      {loadComponent && (
+        <CardDiv>
+          <div>
+            <PictureStyle src={pictureSeries} />
+          </div>
+          <InfoContainer>
+            <FirstInfoContainer>
+              <SeriesTitle>{nameSeries}</SeriesTitle>
+            </FirstInfoContainer>
+            <SecondContainer>
+              <InfoText>
+                Saison {numSeason[0]} - Episode {numEpisode[0]}
+              </InfoText>
+            </SecondContainer>
+          </InfoContainer>
+          <ResumeWrapper>
+            <ResumeStyle>{episodes[0]?.resumeEpisode}</ResumeStyle>
+          </ResumeWrapper>
+          <ThirdContainer>
+            <ClickedStyle>
+              <ClickedSpan>Cochez ici si vous avez vu l'épisode</ClickedSpan>
+            </ClickedStyle>
+            <CheckboxContainer>
+              {!estFinie && (
+                <input
+                  onClick={handleClick}
+                  checked={checked}
+                  type="checkbox"
+                  value="estRegarde"
+                  readOnly
+                />
+              )}
+            </CheckboxContainer>
+          </ThirdContainer>
+        </CardDiv>
+      )}
+    </>
   )
 }
