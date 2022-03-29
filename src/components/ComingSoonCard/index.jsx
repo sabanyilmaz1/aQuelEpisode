@@ -23,24 +23,9 @@ export default function ComingSoonCard({
   numSaison,
   numEpisode,
   dateEpisode,
+  imageSerie,
 }) {
-  const [picture, setPicture] = useState([])
-  const { currentUser } = useContext(UserContext) //Recupere les informations sur l'utilisateur connecté
-  const idUserConnected = currentUser.uid
-  useEffect(() => {
-    const unsubscribe = onSnapshot(
-      query(
-        collection(db, 'Utilisateurs', idUserConnected, 'Series'),
-        where('nomSerie', '==', nomSerie)
-      ),
-      (serie) => {
-        setPicture(serie.docs.map((doc) => doc.data()))
-      }
-    )
-    return unsubscribe
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
-  console.log(dateEpisode)
+  //console.log(dateEpisode)
   const years = Number(dateEpisode.substring(0, 4))
   const month = Number(dateEpisode.substring(5, 7))
   const day = Number(dateEpisode.substring(8, 10))
@@ -59,7 +44,7 @@ export default function ComingSoonCard({
   const count = parseInt(
     (dateEp.getTime() - dateNow.getTime()) / (1000 * 60 * 60 * 24) + 1
   )
-  console.log(count)
+  //console.log(count)
 
   let DeleteEpisode = false
   if (count < 0) {
@@ -71,7 +56,7 @@ export default function ComingSoonCard({
       {!DeleteEpisode && (
         <EpisodeWrap>
           <PhotoContainer>
-            <PictureStyle src={picture[0]?.imageSerie} />
+            <PictureStyle src={imageSerie} />
           </PhotoContainer>
           <InfoContainer>
             <FirstInfoContainer>

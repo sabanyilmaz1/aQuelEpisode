@@ -42,13 +42,13 @@ export default function AddSeriesDetailCard() {
   }
 
   const pictureSeries = 'http://image.tmdb.org/t/p/w500/' + series?.poster_path
-  const nameSeries = series.name
+  const nameSeries = series?.name
   const overviewSeries = series.overview
 
   //Informations sur la série
 
   const countrySeries = series.origin_country
-  const channelSeries = network.name
+  const channelSeries = network?.name
   const nbEpisodes = series.number_of_episodes
   const nbSeasons = series.number_of_seasons
 

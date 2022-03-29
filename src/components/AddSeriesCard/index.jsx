@@ -141,6 +141,7 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
             imageEpisode,
             nomSerie,
             numSaison: seasonsSerie[i].season_number,
+            imageSerie,
           }
           addEpisodes(idUserConnected, Serie.nomSerie, Saison, Episode)
         }
@@ -188,6 +189,7 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
             imageEpisode,
             nomSerie,
             numSaison: seasonsSerie[i].season_number,
+            imageSerie,
           }
           addEpisodes(idUserConnected, Serie.nomSerie, Saison, Episode)
         }

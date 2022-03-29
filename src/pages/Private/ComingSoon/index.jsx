@@ -74,6 +74,23 @@ export default function ComingSoon() {
   //console.log(series)
   console.log('episodes', episodes)
 
+  // Trier les épisodes par dates pour l'affichage avec une fonction
+  // qui compare les dates
+  episodes.sort(function (a, b) {
+    var key1 = new Date(a.dateEpisode)
+    var key2 = new Date(b.dateEpisode)
+
+    if (key1 < key2) {
+      return -1
+    } else if (key1 === key2) {
+      return 0
+    } else {
+      return 1
+    }
+  })
+
+  console.log('apres maj', episodes)
+
   return (
     <div>
       <TitlePage>À Venir</TitlePage>
@@ -85,6 +102,7 @@ export default function ComingSoon() {
               numEpisode={episode.numEpisode}
               numSaison={episode.numSaison}
               dateEpisode={episode.dateEpisode}
+              imageSerie={episode.imageSerie}
             />
           ))}
         </AllEpisodes>

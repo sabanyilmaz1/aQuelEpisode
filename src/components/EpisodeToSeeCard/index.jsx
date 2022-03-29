@@ -33,17 +33,20 @@ import './style.css'
 import LoaderEpisode from '../../assets/loaderEpisode.gif'
 
 export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
-  const { currentUser } = useContext(UserContext) //Recupere les informations sur l'utilisateur connecté
+  //Recupere les informations sur l'utilisateur connecté
+  const { currentUser } = useContext(UserContext)
   const idUserConnected = currentUser.uid
+
   const [series, setSeries] = useState([{}])
   const [seasons, setSeasons] = useState([{}])
-  const [episodes, setEpisodes] = useState([{}]) // eslint-disable-line no-unused-vars
+  const [episodes, setEpisodes] = useState([{}])
   const [numSeason, setNumSeason] = useState([])
   const [numEpisode, setNumEpisode] = useState([])
 
-  //Checkbox
+  //State pour le checkbox
   const [checked, setChecked] = useState(false)
 
+  // State pour le timer
   const [seconds, setSeconds] = useState(0)
 
   const handleClick = () => {
@@ -65,7 +68,6 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
   }, [idUserConnected, nameSeries])
 
   useEffect(() => {
-    // Recupere la liste des saisons de l'utilisateur non terminés pour la série donnée
     const unsubscribe = onSnapshot(
       query(
         collection(
@@ -88,7 +90,6 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
   }, [series]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    // Recupere la liste des séries de l'utilisateur non terminés
     const unsubscribe = onSnapshot(
       query(
         collection(
@@ -112,8 +113,6 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
     )
     return unsubscribe
   }, [numSeason]) // eslint-disable-line react-hooks/exhaustive-deps
-
-  //console.log('unchecked-numEp(0)', numEpisode[0])
 
   //Mettre à jour la BD
 
@@ -142,11 +141,10 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
         )
         const compteur = series[0].nombreEpisodeRegarde
         const compteurSeason = seasons[0].nombreEpisodeRegarde
-        //console.log('compteur', compteur)
+
         updateDoc(SerieMajRef, { nombreEpisodeRegarde: compteur + 1 })
         updateDoc(SaisonMajRef, { nombreEpisodeRegarde: compteurSeason + 1 })
         //Saison Terminée
-        // console.log('Saison terminée')
         //Mettre à jour la saison sur la BD
 
         updateDoc(SaisonMajRef, {
@@ -186,7 +184,7 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
         )
         const compteur = series[0].nombreEpisodeRegarde
         const compteurSeason = seasons[0].nombreEpisodeRegarde
-        //console.log('compteur', compteur)
+
         updateDoc(SerieMajRef, { nombreEpisodeRegarde: compteur + 1 })
         updateDoc(SaisonMajRef, { nombreEpisodeRegarde: compteurSeason + 1 })
       }
@@ -195,6 +193,9 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
       setChecked(false)
     }
   }, [checked, numEpisode, seasons, idUserConnected, numSeason, series]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Critere d'arret pour le suivi de la série (si l'utilisateur a regardé tous les épisodes dispo)
+  // Compter les episodes disponibles à regarder
 
   const estFinie = series[0].nombreEpisodeRegarde === series[0].nombreEpisode
 
@@ -214,6 +215,9 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
     updateDoc(SerieMajRef, { estTermine: true })
   }
 
+  // Bloc de code pour mettre un timer qui affichera le composant EpisodeTooSeeCard
+  // tous les 1 secondes
+
   useEffect(() => {
     const interval = setInterval(() => {
       setSeconds((seconds) => seconds + 1)
@@ -225,7 +229,7 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
     loadComponent = true
   }
 
-  console.log(seconds)
+  console.log(episodes)
 
   return (
     <>
@@ -234,7 +238,7 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
           <img src={LoaderEpisode} alt="loader" />
         </div>
       )}
-      {loadComponent && (
+      {loadComponent && episodes.length !== 0 && (
         <CardDiv>
           <div>
             <PictureStyle src={pictureSeries} />
