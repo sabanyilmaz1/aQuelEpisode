@@ -46,14 +46,12 @@ export default function SeasonInDetail() {
       ),
       (episode) => {
         setEpisodes(episode.docs.map((doc) => doc.data()))
-        console.log(episode.docs.map((doc) => doc.data()))
+        //console.log(episode.docs.map((doc) => doc.data()))
       }
     )
     return unsubscribe
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log(typeof state.numSeason)
-  console.log('episodes', episodes)
   return (
     <div>
       <TitleDiv>
@@ -69,6 +67,8 @@ export default function SeasonInDetail() {
             numEpisode={episode.numEpisode}
             nomEpisode={episode.nomEpisode}
             resumeEpisode={episode.resumeEpisode}
+            numSaison={episode.numSaison}
+            nomSerie={episode.nomSerie}
           />
         ))}
       </EpisodesWrap>

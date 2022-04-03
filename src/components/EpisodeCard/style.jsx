@@ -34,7 +34,9 @@ export const FirstInfo = styled.h2`
   line-height: 29px;
   color: #f1f2f6;
 `
-export const FirstInfoContainer = styled.div``
+export const FirstInfoContainer = styled.div`
+  width: 75%;
+`
 
 export const SecondInfo = styled.span`
   height: 127px;
@@ -44,4 +46,8 @@ export const SecondInfo = styled.span`
   font-size: 15px;
   line-height: 22px;
   color: #f1f2f6;
+`
+export const CheckWrapper = styled.div`
+  margin-top: 100px;
+  margin-right: 80px;
 `

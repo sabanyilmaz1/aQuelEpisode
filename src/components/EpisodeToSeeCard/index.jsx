@@ -211,6 +211,20 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
       'Series',
       nameSeries
     )
+
+    const EpisodeMajRef = doc(
+      db,
+      'Utilisateurs',
+      idUserConnected,
+      'Series',
+      nameSeries,
+      'Saisons',
+      `Saison ${numSeason[0]}`,
+      'Episodes',
+      `Episode ${numEpisode[0]}`
+    )
+    updateDoc(EpisodeMajRef, { estRegarde: true })
+
     //console.log('je rentre dans la boucle')
     updateDoc(SerieMajRef, { estTermine: true })
   }
