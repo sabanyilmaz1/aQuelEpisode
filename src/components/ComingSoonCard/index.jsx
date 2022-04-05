@@ -47,7 +47,7 @@ export default function ComingSoonCard({
   //console.log(count)
 
   let DeleteEpisode = false
-  if (count < 0) {
+  if (count <= 0) {
     DeleteEpisode = true
   }
 

@@ -20,6 +20,7 @@ export const PictureStyle = styled.img`
   border-radius: 20px;
   border: 5px solid #f1f2f6;
 `
+
 export const InfoDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -32,10 +33,14 @@ export const FirstInfo = styled.h2`
   font-weight: 900;
   font-size: 24px;
   line-height: 29px;
-  color: #f1f2f6;
+  color: #e0ba43;
 `
 export const FirstInfoContainer = styled.div`
   width: 75%;
+`
+export const FirstDateContainer = styled.div`
+  width: 100%;
+  margin-top: 20px;
 `
 
 export const SecondInfo = styled.span`
@@ -47,6 +52,25 @@ export const SecondInfo = styled.span`
   line-height: 22px;
   color: #f1f2f6;
 `
+
+export const DateStyle = styled.span`
+  height: 127px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 22px;
+  color: #f1f2f6;
+`
+
+export const DateSortieStyle = styled.span`
+  height: 127px;
+  font-family: 'Montserrat';
+  font-weight: 900;
+  font-size: 20px;
+  color: #e0ba43;
+`
+
 export const CheckWrapper = styled.div`
   margin-top: 100px;
   margin-right: 80px;

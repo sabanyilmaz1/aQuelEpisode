@@ -53,7 +53,7 @@ export const SecondInfo = styled.span`
   font-weight: 700;
   font-size: 24px;
   line-height: 29px;
-  color: #000000;
+  color: #e0ba43;
 `
 export const SecondContainer = styled.div`
   margin-top: 20px;
@@ -64,7 +64,7 @@ export const CountStyle = styled.span`
   font-weight: 400;
   font-size: 45px;
   line-height: 58px;
-  color: #151e3f;
+  color: #e0ba43;
 `
 
 export const DateStyle = styled.span`
@@ -73,5 +73,5 @@ export const DateStyle = styled.span`
   font-weight: 700;
   font-size: 26px;
   line-height: 32px;
-  color: #000000;
+  color: #e0ba43;
 `

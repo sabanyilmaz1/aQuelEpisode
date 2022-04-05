@@ -19,6 +19,8 @@ export function UserContextProvider(props) {
   const [idSeriesDetails, setSeriesDetails] = useState()
   const [idMySeriesDetails, setMySeriesDetails] = useState('default')
 
+  const [clickedLink, setClickedLink] = useState('')
+
   const setIdSeries = (id) => {
     setSeriesDetails(id)
   }
@@ -74,6 +76,8 @@ export function UserContextProvider(props) {
         setIdSeries,
         idMySeriesDetails,
         setMySeries,
+        setClickedLink,
+        clickedLink,
       }}
     >
       {!loadingData && props.children}

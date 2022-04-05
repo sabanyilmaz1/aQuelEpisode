@@ -17,7 +17,7 @@ import {
 
 import SeasonCard from '../../../components/SeasonCard'
 
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { UserContext } from '../../../utils/Usercontext'
 
 import {
@@ -30,6 +30,7 @@ import {
 import { db } from '../../../firebase-config'
 
 export default function MySeriesInDetail() {
+  // Recupere le nom de la série quand on clique sur la série dans la liste Mes Séries
   const { state } = useLocation()
   const id = state.data
 

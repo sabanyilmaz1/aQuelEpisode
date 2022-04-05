@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import HomeSignIn from './pages/HomeSignIn'
 import SignUp from './pages/SignUp'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import { UserContextProvider } from './utils/Usercontext'
 import Private from './pages/Private'
 import PrivateHome from './pages/Private/PrivateHome'
@@ -52,6 +53,7 @@ ReactDOM.render(
             />
           </Route>
         </Routes>
+        <Footer />
       </UserContextProvider>
     </Router>
   </React.StrictMode>,

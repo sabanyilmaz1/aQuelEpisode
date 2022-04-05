@@ -45,7 +45,7 @@ export const InfoText = styled.span`
   font-weight: 700;
   font-size: 20px;
   line-height: 29px;
-  color: #000000;
+  color: #e0ba43;
 `
 
 export const ResumeStyle = styled.span`

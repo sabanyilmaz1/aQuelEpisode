@@ -20,6 +20,7 @@ import {
   FooterBtn,
   FooterSignIn,
   FooterText,
+  PageWrapper,
 } from './style'
 
 function HomeSignIn() {
@@ -56,7 +57,7 @@ function HomeSignIn() {
   }
 
   return (
-    <div>
+    <PageWrapper>
       <LogoWrapper>
         <img src={logo} alt="Logo" />
       </LogoWrapper>
@@ -122,7 +123,7 @@ function HomeSignIn() {
           </FooterSignIn>
         </div>
       </ConnexionContainer>
-    </div>
+    </PageWrapper>
   )
 }
 

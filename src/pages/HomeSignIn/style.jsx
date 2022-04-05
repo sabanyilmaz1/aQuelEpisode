@@ -42,6 +42,7 @@ export const ConnexionContainer = styled.div`
   background: #758bfd;
   border-radius: 25px;
   margin-top: 50px;
+  margin-bottom: 50px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -91,4 +92,8 @@ export const FooterText = styled.span`
   font-family: 'Bebas Neue', sans-serif;
   font-size: 24px;
   color: #f1f2f6;
+`
+
+export const PageWrapper = styled.div`
+  height: 100%;
 `

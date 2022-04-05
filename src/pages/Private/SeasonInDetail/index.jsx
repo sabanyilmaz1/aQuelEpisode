@@ -69,6 +69,7 @@ export default function SeasonInDetail() {
             resumeEpisode={episode.resumeEpisode}
             numSaison={episode.numSaison}
             nomSerie={episode.nomSerie}
+            dateEpisode={episode.dateEpisode}
           />
         ))}
       </EpisodesWrap>
