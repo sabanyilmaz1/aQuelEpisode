@@ -21,11 +21,18 @@ export const TitlePage = styled.h1`
   margin-left: 70px;
   margin-top: 20px;
 `
+export const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+`
 
 export const AllEpisodes = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
 `
 
 export default function EpisodesToSee() {
@@ -48,19 +55,17 @@ export default function EpisodesToSee() {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
   console.log('series', series)
   return (
-    <div>
+    <PageContainer>
       <TitlePage>À Voir</TitlePage>
-      <div>
-        <AllEpisodes>
-          {series.map((serie, index) => (
-            <EpisodeToSeeCard
-              key={`${serie.nomSerie}-${index}`}
-              pictureSeries={serie.imageSerie}
-              nameSeries={serie.nomSerie}
-            />
-          ))}
-        </AllEpisodes>
-      </div>
-    </div>
+      <AllEpisodes>
+        {series.map((serie, index) => (
+          <EpisodeToSeeCard
+            key={`${serie.nomSerie}-${index}`}
+            pictureSeries={serie.imageSerie}
+            nameSeries={serie.nomSerie}
+          />
+        ))}
+      </AllEpisodes>
+    </PageContainer>
   )
 }

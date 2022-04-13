@@ -30,6 +30,7 @@ export default function MySeries() {
   return (
     <PageDiv>
       <TitlePage>Mes Séries</TitlePage>
+      {series.length === 0 && <div>Aucune série ajoutée</div>}
       <SeriesDiv>
         {series.map((serie, index) => (
           <MySeriesCard

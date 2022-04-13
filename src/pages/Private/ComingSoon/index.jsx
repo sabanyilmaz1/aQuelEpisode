@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 
-import { AllEpisodes, TitlePage } from './style'
+import { AllEpisodes, PageContainer, TitlePage } from './style'
 
 import { db } from '../../../firebase-config'
 import { UserContext } from '../../../utils/Usercontext'
@@ -11,7 +11,6 @@ import ComingSoonCard from '../../../components/ComingSoonCard'
 export default function ComingSoon() {
   const { currentUser } = useContext(UserContext) //Recupere les informations sur l'utilisateur connecté
   const idUserConnected = currentUser.uid
-  //const [series, setSeries] = useState([])
   const [episodes, setEpisodes] = useState([])
 
   useEffect(() => {
@@ -92,21 +91,20 @@ export default function ComingSoon() {
   console.log('apres maj', episodes)
 
   return (
-    <div>
+    <PageContainer>
       <TitlePage>À Venir</TitlePage>
-      <div>
-        <AllEpisodes>
-          {episodes.map((episode, index) => (
-            <ComingSoonCard
-              nomSerie={episode.nomSerie}
-              numEpisode={episode.numEpisode}
-              numSaison={episode.numSaison}
-              dateEpisode={episode.dateEpisode}
-              imageSerie={episode.imageSerie}
-            />
-          ))}
-        </AllEpisodes>
-      </div>
-    </div>
+      {episodes.length === 0 && <div>Pas d'épisode à venir !</div>}
+      <AllEpisodes>
+        {episodes.map((episode, index) => (
+          <ComingSoonCard
+            nomSerie={episode.nomSerie}
+            numEpisode={episode.numEpisode}
+            numSaison={episode.numSaison}
+            dateEpisode={episode.dateEpisode}
+            imageSerie={episode.imageSerie}
+          />
+        ))}
+      </AllEpisodes>
+    </PageContainer>
   )
 }

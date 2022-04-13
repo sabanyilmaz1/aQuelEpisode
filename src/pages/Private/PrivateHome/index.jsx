@@ -2,7 +2,14 @@ import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../../utils/Usercontext'
 
 import { getAllUsers, addUsers } from '../../../database/FunctionsDatabase'
-import { PageWrapper } from './style'
+import {
+  DetailContainer,
+  DetailStyle,
+  DetailWrapper,
+  PageWrapper,
+  WelcomeStyle,
+  WelcomeWrapper,
+} from './style'
 
 export default function PrivateHome() {
   const { currentUser } = useContext(UserContext)
@@ -36,9 +43,29 @@ export default function PrivateHome() {
   //console.log('Les utilisateurs', users)
   return (
     <PageWrapper>
-      <div>
-        <h1>Je suis connecté sur le compte pour id : {idUserConnected}</h1>
-      </div>
+      <WelcomeWrapper>
+        <WelcomeStyle>Bienvenue sur ÀQuelEpisode?</WelcomeStyle>
+      </WelcomeWrapper>
+
+      <DetailWrapper>
+        <DetailContainer>
+          <DetailStyle>
+            <span style={{ color: '#e0ba43' }}>
+              Pour commencer à suivre vos séries préferées :
+            </span>
+            <br />
+            - Aller à la page ‘Ajouter une série’ et ajouter tous vos séries
+            preferées <br /> - Si vous voulez avoir un suivi globale de vos
+            séries, aller à la page ‘Mes séries’ <br />- Si vous avez plusieurs
+            épisodes d’une série à cocher , aller à la page ’Mes séries -
+            nomSérie’ ( en cliquant sur le nom de la série) <br />- Si vous avez
+            vu un seul épisode, aller directement à la page ‘À voir’ et cocher
+            l’épisode regardé <br />- Si vous voulez savoir la sorties des
+            episodes encore non diffusées à la page ‘À venir’ pour avoir la date
+            de sorties des épisodes
+          </DetailStyle>
+        </DetailContainer>
+      </DetailWrapper>
     </PageWrapper>
   )
 }

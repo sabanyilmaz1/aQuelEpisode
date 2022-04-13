@@ -9,8 +9,8 @@ import {
   FirstInfo,
   FirstInfoContainer,
   InfoDiv,
+  NoOverwiewWrapper,
   PictureStyle,
-  SecondDateInfo,
   SecondInfo,
 } from './style'
 
@@ -69,9 +69,6 @@ export default function EpisodeCard({
     return unsubscribe
   }, [])
 
-  console.log(episode)
-  console.log(checkedEpisode)
-
   const years = Number(dateEpisode.substring(0, 4))
   const month = Number(dateEpisode.substring(5, 7))
   const day = Number(dateEpisode.substring(8, 10))
@@ -90,12 +87,6 @@ export default function EpisodeCard({
   const count = parseInt(
     (dateEp.getTime() - dateNow.getTime()) / (1000 * 60 * 60 * 24) + 1
   )
-  //console.log(count)
-
-  let DeleteEpisode = false
-  if (count <= 0) {
-    DeleteEpisode = true
-  }
 
   const handleClick = async () => {
     const idSeason = 'Saison ' + numSaison
@@ -131,78 +122,88 @@ export default function EpisodeCard({
       nomSerie
     )
 
+    // Pour décocher un episode coché par erreur
     if (checkedEpisode[0] === true) {
-      console.log('avant le set', checkedEpisode)
-      console.log('checkEpisode false')
+      //on modifie le state pour decocher l'episode
       setCheckEpisode([false])
-      console.log('apres le set', checkedEpisode)
-      // Mettre à jour la variable estRegarde de l'episode
-      updateDoc(EpisodeMajRef, { estRegarde: false })
 
-      //Mettre à jour le nombre d'episode regardé pour la saison
-      const currentSeason = await getDoc(SaisonMajRef)
+      // Les variables pour stocker les données
       let numberEpisodesWatchedSeason = 0
+      let numberOfEpisodes = 0
+      let numberEpisodesWatched = 0
+      let numCurrentEpisode = 0
+
+      //On fait appel à la BD pour récuperer certaines données
+      const currentSeason = await getDoc(SaisonMajRef)
       if (currentSeason.exists()) {
         console.log('Document data:', currentSeason.data())
         numberEpisodesWatchedSeason = currentSeason.data().nombreEpisodeRegarde
-        console.log(numberEpisodesWatchedSeason)
-      } else {
-        // doc.data() will be undefined in this case
-        console.log('No such document!')
+        numberOfEpisodes = currentSeason.data().nombreEpisode
       }
-      console.log('avant update', numberEpisodesWatchedSeason)
+
+      const currentSeries = await getDoc(SerieMajRef)
+      if (currentSeries.exists()) {
+        numberEpisodesWatched = currentSeries.data().nombreEpisodeRegarde
+      }
+
+      const currentEpisodes = await getDoc(EpisodeMajRef)
+      if (currentEpisodes.exists()) {
+        numCurrentEpisode = currentEpisodes.data().numEpisode
+      }
+
+      //Modifications des variables dans la BD
+      if (numCurrentEpisode === numberOfEpisodes) {
+        updateDoc(EpisodeMajRef, { estRegarde: false })
+        updateDoc(SaisonMajRef, { estRegarde: false })
+      } else {
+        updateDoc(EpisodeMajRef, { estRegarde: false })
+      }
       updateDoc(SaisonMajRef, {
         nombreEpisodeRegarde: numberEpisodesWatchedSeason - 1,
       })
-
-      //Mettre à jour le nombre d'episode regardé pour la série
-      const currentSeries = await getDoc(SerieMajRef)
-      let numberEpisodesWatched = 0
-      if (currentSeries.exists()) {
-        numberEpisodesWatched = currentSeries.data().nombreEpisodeRegarde
-      } else {
-        // doc.data() will be undefined in this case
-        console.log('No such document!')
-      }
-      console.log('avant update', numberEpisodesWatched)
       updateDoc(SerieMajRef, {
         nombreEpisodeRegarde: numberEpisodesWatched - 1,
       })
     }
-    if (checkedEpisode[0] === false) {
-      console.log('avant le set', checkedEpisode)
-      console.log('checkEpisode true')
-      setCheckEpisode([true])
-      console.log('apres le set', checkedEpisode)
-      // Mettre à jour la variable estRegarde de l'episode
-      updateDoc(EpisodeMajRef, { estRegarde: true })
 
-      //Mettre à jour le nombre d'episode regardé pour la saison
-      const currentSeason = await getDoc(SaisonMajRef)
+    //Pour cocher un episode
+    if (checkedEpisode[0] === false) {
+      setCheckEpisode([true])
+
+      // Les variables pour stocker les données
       let numberEpisodesWatchedSeason = 0
+      let numberOfEpisodes = 0
+      let numberEpisodesWatched = 0
+      let numCurrentEpisode = 0
+
+      //On fait appel à la BD pour récuperer certaines données
+      const currentSeason = await getDoc(SaisonMajRef)
       if (currentSeason.exists()) {
         console.log('Document data:', currentSeason.data())
         numberEpisodesWatchedSeason = currentSeason.data().nombreEpisodeRegarde
-        console.log(numberEpisodesWatchedSeason)
-      } else {
-        // doc.data() will be undefined in this case
-        console.log('No such document!')
+        numberOfEpisodes = currentSeason.data().nombreEpisode
       }
-      console.log('avant update', numberEpisodesWatchedSeason)
+
+      const currentSeries = await getDoc(SerieMajRef)
+      if (currentSeries.exists()) {
+        numberEpisodesWatched = currentSeries.data().nombreEpisodeRegarde
+      }
+
+      const currentEpisodes = await getDoc(EpisodeMajRef)
+      if (currentEpisodes.exists()) {
+        numCurrentEpisode = currentEpisodes.data().numEpisode
+      }
+
+      //Modifications des variables dans la BD
+      if (numCurrentEpisode === numberOfEpisodes) {
+        updateDoc(EpisodeMajRef, { estRegarde: true })
+        updateDoc(SaisonMajRef, { estRegarde: true })
+      } else {
+        updateDoc(EpisodeMajRef, { estRegarde: true })
+      }
       updateDoc(SaisonMajRef, {
         nombreEpisodeRegarde: numberEpisodesWatchedSeason + 1,
       })
-
-      //Mettre à jour le nombre d'episode regardé pour la série
-      const currentSeries = await getDoc(SerieMajRef)
-      let numberEpisodesWatched = 0
-      if (currentSeries.exists()) {
-        numberEpisodesWatched = currentSeries.data().nombreEpisodeRegarde
-      } else {
-        // doc.data() will be undefined in this case
-        console.log('No such document!')
-      }
-      console.log('avant update', numberEpisodesWatched)
       updateDoc(SerieMajRef, {
         nombreEpisodeRegarde: numberEpisodesWatched + 1,
       })
@@ -222,6 +223,12 @@ export default function EpisodeCard({
             <FirstInfoContainer>
               <SecondInfo>{resumeEpisode}</SecondInfo>
             </FirstInfoContainer>
+
+            {resumeEpisode === '' && (
+              <NoOverwiewWrapper>
+                <SecondInfo>Pas de résumé disponible</SecondInfo>
+              </NoOverwiewWrapper>
+            )}
           </InfoDiv>
           <CheckWrapper>
             <input

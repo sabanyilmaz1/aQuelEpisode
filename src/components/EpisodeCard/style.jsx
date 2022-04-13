@@ -38,6 +38,10 @@ export const FirstInfo = styled.h2`
 export const FirstInfoContainer = styled.div`
   width: 75%;
 `
+export const NoOverwiewWrapper = styled.div`
+  width: 75%;
+  margin-right: 600px;
+`
 export const FirstDateContainer = styled.div`
   width: 100%;
   margin-top: 20px;

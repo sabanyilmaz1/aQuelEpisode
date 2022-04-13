@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   onSnapshot,
   collection,
@@ -14,7 +15,6 @@ import { UserContext } from '../../utils/Usercontext'
 import {
   CardDiv,
   CheckboxContainer,
-  ClickedHere,
   ClickedSpan,
   ClickedStyle,
   FirstInfoContainer,
@@ -26,6 +26,7 @@ import {
   SecondContainer,
   SeriesTitle,
   ThirdContainer,
+  TitleBtn,
 } from './style'
 
 import './style.css'
@@ -33,6 +34,7 @@ import './style.css'
 import LoaderEpisode from '../../assets/loaderEpisode.gif'
 
 export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
+  const navigate = useNavigate()
   //Recupere les informations sur l'utilisateur connecté
   const { currentUser } = useContext(UserContext)
   const idUserConnected = currentUser.uid
@@ -42,6 +44,8 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
   const [episodes, setEpisodes] = useState([{}])
   const [numSeason, setNumSeason] = useState([])
   const [numEpisode, setNumEpisode] = useState([])
+
+  const [clicked, setClicked] = useState(false)
 
   //State pour le checkbox
   const [checked, setChecked] = useState(false)
@@ -139,6 +143,17 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
           'Saisons',
           `Saison ${numSeason[0]}`
         )
+        const EpisodeMajRef = doc(
+          db,
+          'Utilisateurs',
+          idUserConnected,
+          'Series',
+          nameSeries,
+          'Saisons',
+          `Saison ${numSeason[0]}`,
+          'Episodes',
+          `Episode ${numEpisode[0]}`
+        )
         const compteur = series[0].nombreEpisodeRegarde
         const compteurSeason = seasons[0].nombreEpisodeRegarde
 
@@ -150,6 +165,9 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
         updateDoc(SaisonMajRef, {
           estRegarde: true,
           nombreEpisodeRegarde: compteurSeason + 1,
+        })
+        updateDoc(EpisodeMajRef, {
+          estRegarde: true,
         })
       } else if (numEpisode[0] !== seasons[0].nombreEpisode) {
         //Saison non terminée
@@ -197,37 +215,37 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
   // Critere d'arret pour le suivi de la série (si l'utilisateur a regardé tous les épisodes dispo)
   // Compter les episodes disponibles à regarder
 
-  const estFinie = series[0].nombreEpisodeRegarde === series[0].nombreEpisode
+  //const estFinie = series[0].nombreEpisodeRegarde === series[0].nombreEpisode
 
-  if (
-    estFinie === true &&
-    series[0].nombreEpisodeRegarde !== undefined &&
-    series[0].nombreEpisode !== undefined
-  ) {
-    const SerieMajRef = doc(
-      db,
-      'Utilisateurs',
-      idUserConnected,
-      'Series',
-      nameSeries
-    )
+  // if (
+  //   estFinie === true &&
+  //   series[0].nombreEpisodeRegarde !== undefined &&
+  //   series[0].nombreEpisode !== undefined
+  // ) {
+  //   const SerieMajRef = doc(
+  //     db,
+  //     'Utilisateurs',
+  //     idUserConnected,
+  //     'Series',
+  //     nameSeries
+  //   )
 
-    const EpisodeMajRef = doc(
-      db,
-      'Utilisateurs',
-      idUserConnected,
-      'Series',
-      nameSeries,
-      'Saisons',
-      `Saison ${numSeason[0]}`,
-      'Episodes',
-      `Episode ${numEpisode[0]}`
-    )
-    updateDoc(EpisodeMajRef, { estRegarde: true })
+  //   const EpisodeMajRef = doc(
+  //     db,
+  //     'Utilisateurs',
+  //     idUserConnected,
+  //     'Series',
+  //     nameSeries,
+  //     'Saisons',
+  //     `Saison ${numSeason[0]}`,
+  //     'Episodes',
+  //     `Episode ${numEpisode[0]}`
+  //   )
+  //   updateDoc(EpisodeMajRef, { estRegarde: true })
 
-    //console.log('je rentre dans la boucle')
-    updateDoc(SerieMajRef, { estTermine: true })
-  }
+  //   //console.log('je rentre dans la boucle')
+  //   updateDoc(SerieMajRef, { estTermine: true })
+  // }
 
   // Bloc de code pour mettre un timer qui affichera le composant EpisodeTooSeeCard
   // tous les 1 secondes
@@ -243,7 +261,11 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
     loadComponent = true
   }
 
-  console.log(episodes)
+  const clickedAndRedirect = () => {
+    setClicked(true)
+    console.log(clicked)
+    navigate('', { state: { data: nameSeries } })
+  }
 
   return (
     <>
@@ -259,7 +281,9 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
           </div>
           <InfoContainer>
             <FirstInfoContainer>
-              <SeriesTitle>{nameSeries}</SeriesTitle>
+              <TitleBtn onClick={() => clickedAndRedirect()}>
+                <SeriesTitle>{nameSeries}</SeriesTitle>
+              </TitleBtn>
             </FirstInfoContainer>
             <SecondContainer>
               <InfoText>
@@ -275,15 +299,13 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
               <ClickedSpan>Cochez ici si vous avez vu l'épisode</ClickedSpan>
             </ClickedStyle>
             <CheckboxContainer>
-              {!estFinie && (
-                <input
-                  onClick={handleClick}
-                  checked={checked}
-                  type="checkbox"
-                  value="estRegarde"
-                  readOnly
-                />
-              )}
+              <input
+                onClick={handleClick}
+                checked={checked}
+                type="checkbox"
+                value="estRegarde"
+                readOnly
+              />
             </CheckboxContainer>
           </ThirdContainer>
         </CardDiv>

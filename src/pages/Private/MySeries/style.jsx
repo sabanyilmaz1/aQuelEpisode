@@ -13,7 +13,9 @@ export const TitlePage = styled.h1`
   margin-left: 70px;
   margin-top: 20px;
 `
-export const PageDiv = styled.div``
+export const PageDiv = styled.div`
+  height: 100vh;
+`
 export const SeriesDiv = styled.div`
   display: flex;
   flex-wrap: wrap;

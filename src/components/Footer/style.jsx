@@ -3,9 +3,11 @@ import styled from 'styled-components'
 
 export const FooterContainer = styled.footer`
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
   height: 10%;
   background: #758bfd;
   border-top: 4px solid #000000;
