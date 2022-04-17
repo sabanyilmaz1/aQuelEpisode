@@ -34,6 +34,14 @@ export const AllEpisodes = styled.div`
   align-items: center;
   height: 100vh;
 `
+export const NoEpisodeStyle = styled.div`
+  height: 118px;
+  font-family: 'Bebas Neue';
+  font-size: 30px;
+  color: #27187e;
+  margin-left: 70px;
+  margin-top: 10px;
+`
 
 export default function EpisodesToSee() {
   const { currentUser } = useContext(UserContext) //Recupere les informations sur l'utilisateur connecté
@@ -57,6 +65,13 @@ export default function EpisodesToSee() {
   return (
     <PageContainer>
       <TitlePage>À Voir</TitlePage>
+      {series.length === 0 && (
+        <div>
+          <NoEpisodeStyle>
+            Pas d'épisode à regarder, vous êtes à jour !{' '}
+          </NoEpisodeStyle>
+        </div>
+      )}
       <AllEpisodes>
         {series.map((serie, index) => (
           <EpisodeToSeeCard

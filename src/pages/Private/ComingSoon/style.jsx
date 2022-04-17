@@ -18,6 +18,15 @@ export const AllEpisodes = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
 `
-export const PageContainer = styled.div``
+export const PageContainer = styled.div`
+  height: ${({ numberEpisodes }) => (numberEpisodes > 0 ? '100%' : '100vh')};
+`
+export const NoEpisodeStyle = styled.div`
+  height: 118px;
+  font-family: 'Bebas Neue';
+  font-size: 30px;
+  color: #27187e;
+  margin-left: 70px;
+  margin-top: 10px;
+`

@@ -212,44 +212,8 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
     }
   }, [checked, numEpisode, seasons, idUserConnected, numSeason, series]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Critere d'arret pour le suivi de la série (si l'utilisateur a regardé tous les épisodes dispo)
-  // Compter les episodes disponibles à regarder
-
-  //const estFinie = series[0].nombreEpisodeRegarde === series[0].nombreEpisode
-
-  // if (
-  //   estFinie === true &&
-  //   series[0].nombreEpisodeRegarde !== undefined &&
-  //   series[0].nombreEpisode !== undefined
-  // ) {
-  //   const SerieMajRef = doc(
-  //     db,
-  //     'Utilisateurs',
-  //     idUserConnected,
-  //     'Series',
-  //     nameSeries
-  //   )
-
-  //   const EpisodeMajRef = doc(
-  //     db,
-  //     'Utilisateurs',
-  //     idUserConnected,
-  //     'Series',
-  //     nameSeries,
-  //     'Saisons',
-  //     `Saison ${numSeason[0]}`,
-  //     'Episodes',
-  //     `Episode ${numEpisode[0]}`
-  //   )
-  //   updateDoc(EpisodeMajRef, { estRegarde: true })
-
-  //   //console.log('je rentre dans la boucle')
-  //   updateDoc(SerieMajRef, { estTermine: true })
-  // }
-
-  // Bloc de code pour mettre un timer qui affichera le composant EpisodeTooSeeCard
-  // tous les 1 secondes
-
+  // Une boucle pour mettre en place en timer pour afficher chaque episode avec un petit temps d'attente
+  // pour le feedback de l'utilisateur, il sait qu'il a coché un épisode avec ce petit temps
   useEffect(() => {
     const interval = setInterval(() => {
       setSeconds((seconds) => seconds + 1)
@@ -264,7 +228,7 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
   const clickedAndRedirect = () => {
     setClicked(true)
     console.log(clicked)
-    navigate('', { state: { data: nameSeries } })
+    navigate('/private/myseries/details', { state: { data: nameSeries } })
   }
 
   return (

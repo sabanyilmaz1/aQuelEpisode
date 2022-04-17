@@ -3,19 +3,18 @@ import styled from 'styled-components'
 export const LogoWrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-item: center;
+  align-items: center;
   margin-bottom: 10px;
 `
 
 export const DescriptionContainer = styled.div`
   width: auto;
   height: auto;
-  left: 29px;
-  top: 192px;
   background: #758bfd;
   border-radius: 25px;
   text-align: left;
   padding: 10px;
+  margin: 50px;
 `
 export const DescriptionText = styled.span`
   font-family: 'Montserrat', sans-serif;
@@ -37,35 +36,37 @@ export const ConnexionText = styled.span`
 `
 
 export const ConnexionContainer = styled.div`
-  width: 731px;
-  height: 535px;
+  width: 550px;
+  height: 350px;
+  padding-top: 10px;
   background: #758bfd;
   border-radius: 25px;
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  padding: 20px;
   display: flex;
   flex-direction: column;
 `
 
 export const TextInput = styled.input`
-  width: 600px;
+  width: 400px;
   height: 40px;
   background: #fcfcfc;
   border-radius: 20px;
-  margin-top: 50px;
+  margin-top: 20px;
 `
 
 export const SuivantBtn = styled.button`
-  margin-top: 75px;
   background: #ff8600;
   border-radius: 30px;
-  margin: 75px;
   width: 200px;
 `
+export const SuivantContainer = styled.div`
+  margin-top: 20px;
+`
+
 export const SuivantText = styled.span`
   font-family: 'Bebas Neue', sans-serif;
   font-style: normal;
@@ -78,10 +79,12 @@ export const SuivantText = styled.span`
 export const FooterSignIn = styled.div`
   display: flex;
   justify-content: space-between;
-  align-item: center;
+  align-items: center;
   margin-left: 100px;
   margin-right: 100px;
-  margin-bottom: 100px;
+  margin-bottom: 1px;
+  justify-content: center;
+  margin-top: 10px;
 `
 
 export const FooterBtn = styled.button`
@@ -95,5 +98,9 @@ export const FooterText = styled.span`
 `
 
 export const PageWrapper = styled.div`
-  height: 100%;
+  // height: 100vh;
+`
+export const ValidationStyle = styled.span`
+  color: #ff7b00;
+  font-weight: bold;
 `

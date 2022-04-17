@@ -1,9 +1,9 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const PageWrapper = styled.div`
   height: 100vh;
   width: 100%;
-  margin-bottom: 50px;
 `
 export const WelcomeStyle = styled.span`
   font-family: 'Montserrat';
@@ -23,15 +23,10 @@ export const DetailWrapper = styled.div`
   width: 1100px;
   height: 500px;
   margin-left: 50px;
-  margin-top: 10px;
+  margin-top: 40px;
   background: #758bfd;
   border-radius: 20px;
-`
-
-export const DetailContainer = styled.div`
-  margin-left: 50px;
-  margin-top: 20px;
-  width: 1000px;
+  padding: 20px;
 `
 
 export const DetailStyle = styled.span`
@@ -42,6 +37,11 @@ export const DetailStyle = styled.span`
   font-size: 25px;
   line-height: 46px;
   letter-spacing: -0.005em;
-
   color: #f1f2f6;
+`
+export const StyledLink = styled(Link)`
+  font-family: Montserrat;
+  font-weight: bold;
+  color: #e0b943d3;
+  text-decoration: none;
 `

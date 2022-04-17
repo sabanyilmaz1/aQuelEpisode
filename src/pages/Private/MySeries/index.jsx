@@ -5,7 +5,13 @@ import { UserContext } from '../../../utils/Usercontext'
 import MySeriesCard from '../../../components/MySeriesCard'
 
 //Style
-import { PageDiv, SeriesDiv, TitlePage } from './style'
+import {
+  NoSeriesStyle,
+  PageDiv,
+  SeriesDiv,
+  TitlePage,
+  StyledLink,
+} from './style'
 import { onSnapshot, collection } from 'firebase/firestore'
 import { db } from '../../../firebase-config'
 
@@ -26,11 +32,18 @@ export default function MySeries() {
     return unsubscribe
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  //console.log(series)
   return (
     <PageDiv>
       <TitlePage>Mes Séries</TitlePage>
-      {series.length === 0 && <div>Aucune série ajoutée</div>}
+      {series.length === 0 && (
+        <div>
+          <NoSeriesStyle>
+            Aucune série ajoutée, aller à la page{' '}
+            <StyledLink to="/private/addseries">Ajouter une série</StyledLink>{' '}
+            pour commencer à ajouter des séries
+          </NoSeriesStyle>
+        </div>
+      )}
       <SeriesDiv>
         {series.map((serie, index) => (
           <MySeriesCard

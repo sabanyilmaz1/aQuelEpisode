@@ -75,3 +75,15 @@ export const DateStyle = styled.span`
   line-height: 32px;
   color: #e0ba43;
 `
+export const TitleBtn = styled.button`
+  background: transparent;
+  border: none !important;
+  cursor: pointer;
+  transition: 0.2s;
+  &:hover {
+    background: rgba(255, 134, 0, 0.5);
+  }
+  &:active {
+    transform: scale(1.03) translateX(-10%);
+  }
+`

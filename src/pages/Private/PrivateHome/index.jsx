@@ -3,12 +3,12 @@ import { UserContext } from '../../../utils/Usercontext'
 
 import { getAllUsers, addUsers } from '../../../database/FunctionsDatabase'
 import {
-  DetailContainer,
   DetailStyle,
   DetailWrapper,
   PageWrapper,
   WelcomeStyle,
   WelcomeWrapper,
+  StyledLink,
 } from './style'
 
 export default function PrivateHome() {
@@ -48,23 +48,28 @@ export default function PrivateHome() {
       </WelcomeWrapper>
 
       <DetailWrapper>
-        <DetailContainer>
-          <DetailStyle>
-            <span style={{ color: '#e0ba43' }}>
-              Pour commencer à suivre vos séries préferées :
-            </span>
-            <br />
-            - Aller à la page ‘Ajouter une série’ et ajouter tous vos séries
-            preferées <br /> - Si vous voulez avoir un suivi globale de vos
-            séries, aller à la page ‘Mes séries’ <br />- Si vous avez plusieurs
-            épisodes d’une série à cocher , aller à la page ’Mes séries -
-            nomSérie’ ( en cliquant sur le nom de la série) <br />- Si vous avez
-            vu un seul épisode, aller directement à la page ‘À voir’ et cocher
-            l’épisode regardé <br />- Si vous voulez savoir la sorties des
-            episodes encore non diffusées à la page ‘À venir’ pour avoir la date
-            de sorties des épisodes
-          </DetailStyle>
-        </DetailContainer>
+        <DetailStyle>
+          <span style={{ color: '#e0ba43' }}>
+            Pour commencer à suivre vos séries préferées :
+          </span>
+          <br />- Aller à la page{' '}
+          <StyledLink to="/private/addseries">Ajouter une série</StyledLink> et
+          ajouter tous vos séries preferées <br /> - Si vous voulez avoir un
+          suivi globale de vos séries, aller à la page{' '}
+          <StyledLink to="/private/myseries">Mes Séries</StyledLink>
+          <br />- Si vous avez plusieurs épisodes d’une série à cocher , aller à
+          la page{' '}
+          <StyledLink to="/private/myseries">
+            Mes séries - nomSérie
+          </StyledLink>{' '}
+          ( en cliquant sur le nom de la série puis sur une saison) <br />- Si
+          vous avez vu un seul épisode, aller directement à la page{' '}
+          <StyledLink to="/private/myseries">À voir</StyledLink> et cocher
+          l’épisode regardé <br />- Si vous voulez savoir la sorties des
+          episodes encore non diffusées à la page{' '}
+          <StyledLink to="/private/myseries">À venir</StyledLink> pour avoir la
+          date de sorties des épisodes
+        </DetailStyle>
       </DetailWrapper>
     </PageWrapper>
   )

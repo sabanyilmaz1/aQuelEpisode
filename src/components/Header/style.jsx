@@ -33,13 +33,6 @@ export const StyledLink1 = styled(Link)`
   font-size: 17px;
   margin-left: 25px;
   color: ${({ url }) => (url ? '#e0ba43' : 'white')};
-
-  /*
-  ${(props) =>
-    props.$isFullLink &&
-    `color: white; 
-    border-radius: 30px; `}
-    */
 `
 
 export const StyledLink2 = styled(Link)`

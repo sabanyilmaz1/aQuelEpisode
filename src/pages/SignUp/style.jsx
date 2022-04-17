@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const LogoWrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-item: center;
+  align-items: center;
   margin-bottom: 10px;
 `
 
@@ -28,6 +28,7 @@ export const InscriptionBloc = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 40px;
 `
 
 export const TextInput = styled.input`

@@ -21,6 +21,8 @@ import {
   FooterSignIn,
   FooterText,
   PageWrapper,
+  SuivantContainer,
+  ValidationStyle,
 } from './style'
 
 function HomeSignIn() {
@@ -64,64 +66,49 @@ function HomeSignIn() {
 
       <DescriptionContainer>
         <DescriptionText>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          scelerisque arcu eget arcu mollis, at consectetur dui malesuada. Sed a
-          magna fringilla, convallis ex nec, rhoncus diam. Suspendisse porttitor
-          imperdiet dui, a sodales dolor tincidunt maximus. Maecenas eu lorem
-          consectetur est lacinia dapibus id faucibus nibh. In feugiat orci
-          eros, nec sodales dui rhoncus eu. Nullam eget elit in enim fermentum
-          volutpat at eget ante. Cras placerat eros id dolor accumsan, a dapibus
-          eros porta. Ut ante erat, luctus malesuada euismod ac, maximus vel
-          libero.
+          Si vous voulez suivre vos séries et ne plus rater aucun épisode,
+          inscrit-toi vite et commence à ajouter tes séries préférées.
         </DescriptionText>
       </DescriptionContainer>
 
       <ConnexionContainer>
         <ConnexionText>Connexion</ConnexionText>
+        <form ref={formRef} onSubmit={handleForm}>
+          <label htmlFor="SignInEmail"></label>
+          <TextInput
+            ref={addInputs}
+            id="SignInEmail"
+            name="email"
+            type="email"
+            placeholder="Votre email ..."
+            required
+          />
 
-        <div>
-          <form ref={formRef} onSubmit={handleForm}>
-            <div>
-              <label htmlFor="SignInEmail"></label>
-              <TextInput
-                ref={addInputs}
-                id="SignInEmail"
-                name="email"
-                type="email"
-                placeholder="Votre email ..."
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="PwdEmail"></label>
-              <TextInput
-                ref={addInputs}
-                id="PwdEmail"
-                name="pwd"
-                type="password"
-                placeholder="Votre mot de passe ..."
-                required
-              />
-            </div>
-            <p>{validation}</p>
-
+          <label htmlFor="PwdEmail"></label>
+          <TextInput
+            ref={addInputs}
+            id="PwdEmail"
+            name="pwd"
+            type="password"
+            placeholder="Votre mot de passe ..."
+            required
+          />
+          <p>
+            <ValidationStyle>{validation}</ValidationStyle>
+          </p>
+          <SuivantContainer>
             <SuivantBtn>
               <SuivantText>Suivant</SuivantText>
             </SuivantBtn>
-          </form>
-          <FooterSignIn>
-            <FooterBtn>
-              <Link style={{ textDecoration: 1 }} to="/inscription">
-                <FooterText>Créer un compte</FooterText>{' '}
-              </Link>
-            </FooterBtn>
-            <FooterBtn>
-              {' '}
-              <FooterText>Mot de passe oublié ?</FooterText>
-            </FooterBtn>
-          </FooterSignIn>
-        </div>
+          </SuivantContainer>
+        </form>
+        <FooterSignIn>
+          <FooterBtn>
+            <Link style={{ textDecoration: 1 }} to="/inscription">
+              <FooterText>Créer un compte</FooterText>{' '}
+            </Link>
+          </FooterBtn>
+        </FooterSignIn>
       </ConnexionContainer>
     </PageWrapper>
   )

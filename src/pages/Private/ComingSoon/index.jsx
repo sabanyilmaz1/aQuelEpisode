@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 
-import { AllEpisodes, PageContainer, TitlePage } from './style'
+import { AllEpisodes, NoEpisodeStyle, PageContainer, TitlePage } from './style'
 
 import { db } from '../../../firebase-config'
 import { UserContext } from '../../../utils/Usercontext'
@@ -19,9 +19,7 @@ export default function ComingSoon() {
     const unsubscribe = onSnapshot(
       collection(db, 'Utilisateurs', idUserConnected, 'Series'),
       (serie) => {
-        //setSeries(serie.docs.map((doc) => doc.data()))
         const serieN = serie.docs.map((doc) => doc.data()) // liste avec les séries
-        //console.log('serieN', serieN)
         for (let i = 0; i < serieN.length; i++) {
           onSnapshot(
             collection(
@@ -50,7 +48,6 @@ export default function ComingSoon() {
                   ),
                   (episode) => {
                     const episodeToAdd = episode.docs.map((doc) => doc.data())
-                    //setEpisodes((oldArray) => [...oldArray, episodeToAdd])
                     for (let z = 0; z < episodeToAdd.length; z++) {
                       if (episodeToAdd[z].estSorti === false) {
                         setEpisodes((oldArray) => [
@@ -70,9 +67,6 @@ export default function ComingSoon() {
     return unsubscribe
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  //console.log(series)
-  console.log('episodes', episodes)
-
   // Trier les épisodes par dates pour l'affichage avec une fonction
   // qui compare les dates
   episodes.sort(function (a, b) {
@@ -88,12 +82,14 @@ export default function ComingSoon() {
     }
   })
 
-  console.log('apres maj', episodes)
-
   return (
-    <PageContainer>
+    <PageContainer numberEpisodes={episodes.length}>
       <TitlePage>À Venir</TitlePage>
-      {episodes.length === 0 && <div>Pas d'épisode à venir !</div>}
+      {episodes.length === 0 && (
+        <div>
+          <NoEpisodeStyle>Pas d'épisode à venir ! </NoEpisodeStyle>
+        </div>
+      )}
       <AllEpisodes>
         {episodes.map((episode, index) => (
           <ComingSoonCard
