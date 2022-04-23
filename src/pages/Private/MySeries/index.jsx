@@ -33,7 +33,8 @@ export default function MySeries() {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <PageDiv>
+    
+    <PageDiv numberSeries={series.length}>
       <TitlePage>Mes Séries</TitlePage>
       {series.length === 0 && (
         <div>

@@ -91,8 +91,9 @@ export default function ComingSoon() {
         </div>
       )}
       <AllEpisodes>
-        {episodes.map((episode, index) => (
+        {episodes.map((episode) => (
           <ComingSoonCard
+            key={`${episode.nomSerie}`}
             nomSerie={episode.nomSerie}
             numEpisode={episode.numEpisode}
             numSaison={episode.numSaison}

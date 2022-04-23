@@ -54,8 +54,8 @@ export default function PrivateHome() {
           </span>
           <br />- Aller à la page{' '}
           <StyledLink to="/private/addseries">Ajouter une série</StyledLink> et
-          ajouter tous vos séries preferées <br /> - Si vous voulez avoir un
-          suivi globale de vos séries, aller à la page{' '}
+          ajouter toutes vos séries preferées <br /> - Si vous voulez avoir un
+          suivi global de vos séries, aller à la page{' '}
           <StyledLink to="/private/myseries">Mes Séries</StyledLink>
           <br />- Si vous avez plusieurs épisodes d’une série à cocher , aller à
           la page{' '}
@@ -64,10 +64,10 @@ export default function PrivateHome() {
           </StyledLink>{' '}
           ( en cliquant sur le nom de la série puis sur une saison) <br />- Si
           vous avez vu un seul épisode, aller directement à la page{' '}
-          <StyledLink to="/private/myseries">À voir</StyledLink> et cocher
-          l’épisode regardé <br />- Si vous voulez savoir la sorties des
-          episodes encore non diffusées à la page{' '}
-          <StyledLink to="/private/myseries">À venir</StyledLink> pour avoir la
+          <StyledLink to="/private/episodestosee">À voir</StyledLink> et cocher
+          l’épisode regardé <br />- Si vous voulez connaître la date de sortie des
+          episodes encore non diffusés à la page, Aller à la page{' '}
+          <StyledLink to="/private/episodescomingsoon">À venir</StyledLink> pour avoir la
           date de sorties des épisodes
         </DetailStyle>
       </DetailWrapper>

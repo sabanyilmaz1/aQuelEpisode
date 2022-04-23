@@ -40,7 +40,7 @@ export default function AddSeries() {
   }
 
   return (
-    <GlobalDiv>
+    <GlobalDiv numberSeries={series.length}>
       <Container>
         <form onSubmit={handleOnSubmit}>
           <label htmlFor="RechercheSerie"></label>

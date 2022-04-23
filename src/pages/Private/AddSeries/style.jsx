@@ -19,4 +19,5 @@ export const Container = styled.div`
 
 export const GlobalDiv = styled.div`
   z-index: 1;
+  height: ${({ numberSeries }) => (numberSeries > 0 ? '100%' : '100vh')};
 `

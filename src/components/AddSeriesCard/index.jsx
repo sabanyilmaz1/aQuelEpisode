@@ -207,6 +207,7 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
       alert('Erreur : Cette série est deja ajouté dans votre liste')
     } else {
       console.log('Serie pas ajouté')
+      alert(`Vous avez ajouté la série : ${nameSerie} à votre liste de séries`)
       getSeries(id_series)
     }
   }

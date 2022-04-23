@@ -67,7 +67,7 @@ function HomeSignIn() {
       <DescriptionContainer>
         <DescriptionText>
           Si vous voulez suivre vos séries et ne plus rater aucun épisode,
-          inscrit-toi vite et commence à ajouter tes séries préférées.
+          inscris-toi vite et commence à ajouter tes séries préférées.
         </DescriptionText>
       </DescriptionContainer>
 
