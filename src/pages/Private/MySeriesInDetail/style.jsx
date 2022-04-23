@@ -113,3 +113,6 @@ export const SeasonBtn = styled.button`
     transform: scale(1.03) translateX(-10%);
   }
 `
+export const PageContainer=styled.div`
+min-height: calc(100vh - 100px);
+`

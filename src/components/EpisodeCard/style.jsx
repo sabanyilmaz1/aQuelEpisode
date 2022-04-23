@@ -24,7 +24,8 @@ export const PictureStyle = styled.img`
 export const InfoDiv = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  margin: 2%;
+  width: 70%;
 `
 export const FirstInfo = styled.h2`
   height: 40px;
@@ -76,6 +77,6 @@ export const DateSortieStyle = styled.span`
 `
 
 export const CheckWrapper = styled.div`
-  margin-top: 100px;
-  margin-right: 80px;
+  margin-top: 6%;
+  margin-right: 10%;
 `

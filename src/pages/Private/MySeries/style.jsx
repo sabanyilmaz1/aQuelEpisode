@@ -15,7 +15,8 @@ export const TitlePage = styled.h1`
   margin-top: 20px;
 `
 export const PageDiv = styled.div`
-  height: ${({ numberSeries }) => (numberSeries > 0 ? '100%' : '100vh')};
+  //height: ${({ numberSeries }) => (numberSeries > 0 ? '100%' : '100vh')};
+  min-height: calc(100vh - 100px);
   width: 100%;
   display: flex;
   flex-direction: column;

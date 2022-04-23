@@ -19,5 +19,6 @@ export const Container = styled.div`
 
 export const GlobalDiv = styled.div`
   z-index: 1;
-  height: ${({ numberSeries }) => (numberSeries > 0 ? '100%' : '100vh')};
+ // height: ${({ numberSeries }) => (numberSeries > 0 ? '100%' : '100vh')};
+ min-height: calc(100vh - 100px);
 `

@@ -3,16 +3,13 @@ import { useLocation } from 'react-router-dom'
 
 import { TitleDiv, TitleText } from '../MySeriesInDetail/style'
 import EpisodeCard from '../../../components/EpisodeCard'
-import { EpisodesWrap } from './style'
+import { EpisodesWrap, PageContainer } from './style'
 import { useState, useEffect, useContext } from 'react'
 import {
   onSnapshot,
   collection,
   query,
-  where,
   orderBy,
-  doc,
-  updateDoc,
 } from 'firebase/firestore'
 
 import { UserContext } from '../../../utils/Usercontext'
@@ -53,7 +50,7 @@ export default function SeasonInDetail() {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div>
+    <PageContainer>
       <TitleDiv>
         <TitleText>
           Mes Séries - {nameSeries} - Saison {numSeason}{' '}
@@ -73,6 +70,6 @@ export default function SeasonInDetail() {
           />
         ))}
       </EpisodesWrap>
-    </div>
+    </PageContainer>
   )
 }

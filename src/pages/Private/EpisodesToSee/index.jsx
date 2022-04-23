@@ -18,8 +18,8 @@ export const TitlePage = styled.h1`
   line-height: 88px;
   letter-spacing: -0.05em;
   color: #27187e;
-  margin-left: 70px;
-  margin-top: 20px;
+  margin-left: 5%;
+  margin-top: 2%;
 `
 export const PageContainer = styled.div`
   display: flex;

@@ -5,6 +5,7 @@ import {
   InfoDiv,
   OverviewDiv,
   OverviewStyle,
+  PageContainer,
   PictureAndProgressDiv,
   PictureStyle,
   SecondContainer,
@@ -77,7 +78,7 @@ export default function MySeriesInDetail() {
   //console.log(seasons)
 
   return (
-    <div>
+    <PageContainer>
       <TitleDiv>
         <TitleText>Mes Séries - {id} </TitleText>
       </TitleDiv>
@@ -108,6 +109,6 @@ export default function MySeriesInDetail() {
           ))}
         </SecondContainer>
       </WrapTwoContainer>
-    </div>
+    </PageContainer>
   )
 }

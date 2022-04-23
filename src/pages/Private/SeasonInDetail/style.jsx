@@ -21,3 +21,6 @@ export const EpisodesWrap = styled.div`
   align-items: center;
   margin-top: 30px;
 `
+export const PageContainer=styled.div`
+min-height: calc(100vh - 100px);
+`

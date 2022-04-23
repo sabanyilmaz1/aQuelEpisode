@@ -20,7 +20,8 @@ export const AllEpisodes = styled.div`
   align-items: center;
 `
 export const PageContainer = styled.div`
-  height: ${({ numberEpisodes }) => (numberEpisodes > 0 ? '100%' : '100vh')};
+//height: ${({ numberEpisodes }) => (numberEpisodes > 0 ? '100%' : '100vh')};
+min-height: calc(100vh - 100px);
 `
 export const NoEpisodeStyle = styled.div`
   height: 118px;
