@@ -14,8 +14,7 @@ export default function ComingSoon() {
   const [episodes, setEpisodes] = useState([])
 
   useEffect(() => {
-    // Recupere la liste des séries de l'utilisateur
-
+    // Recupere la liste de tous les épisodes qui ne sont pas encore sorties de tous les séries de l'utilisateur 
     const unsubscribe = onSnapshot(
       collection(db, 'Utilisateurs', idUserConnected, 'Series'),
       (serie) => {
@@ -31,8 +30,7 @@ export default function ComingSoon() {
               'Saisons'
             ),
             (saison) => {
-              const saisonN = saison.docs.map((doc) => doc.data())
-              console.log('saisonN', saisonN)
+              const saisonN = saison.docs.map((doc) => doc.data()) // liste avec les saisons
               for (let j = 0; j < saisonN.length; j++) {
                 const saisonId = 'Saison ' + saisonN[j].numSaison
                 onSnapshot(
@@ -47,8 +45,9 @@ export default function ComingSoon() {
                     'Episodes'
                   ),
                   (episode) => {
-                    const episodeToAdd = episode.docs.map((doc) => doc.data())
+                    const episodeToAdd = episode.docs.map((doc) => doc.data()) // listes avec les episodes
                     for (let z = 0; z < episodeToAdd.length; z++) {
+                      // on ajoute seulement les episodes qui ne sont pas encore sortie dans le state episodes
                       if (episodeToAdd[z].estSorti === false) {
                         setEpisodes((oldArray) => [
                           ...oldArray,

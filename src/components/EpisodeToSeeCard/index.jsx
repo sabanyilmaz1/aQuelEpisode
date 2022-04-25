@@ -34,18 +34,24 @@ import './style.css'
 import LoaderEpisode from '../../assets/loaderEpisode.gif'
 
 export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
+
+  //Permet la redirection vers une autre page en envoyant des données
   const navigate = useNavigate()
+
   //Recupere les informations sur l'utilisateur connecté
   const { currentUser } = useContext(UserContext)
   const idUserConnected = currentUser.uid
 
+  //Plusioeurs state pour stocker plusieurs données sur une série 
   const [series, setSeries] = useState([{}])
   const [seasons, setSeasons] = useState([{}])
   const [episodes, setEpisodes] = useState([{}])
   const [numSeason, setNumSeason] = useState([])
   const [numEpisode, setNumEpisode] = useState([])
 
-  const [clicked, setClicked] = useState(false)
+  //State pour connaitre l'etat true ou false si l'utilisateur clique sur le 
+  //nom de la série pour se rediriger vers la page detail de la sériee
+  const [clicked, setClicked] = useState(false) //eslint-disable-line
 
   //State pour le checkbox
   const [checked, setChecked] = useState(false)
@@ -53,11 +59,13 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
   // State pour le timer
   const [seconds, setSeconds] = useState(0)
 
+  //remise à zero du timer et du checkbox apres chaque cochage
   const handleClick = () => {
     setChecked(!checked)
     setSeconds(0)
   }
 
+  //Recupere des infos de la série avec le nameSeries en appelant la base de données
   useEffect(() => {
     const unsubscribe = onSnapshot(
       query(
@@ -71,6 +79,7 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
     return unsubscribe
   }, [idUserConnected, nameSeries])
 
+  //Recupere les saisons de la série
   useEffect(() => {
     const unsubscribe = onSnapshot(
       query(
@@ -93,6 +102,8 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
     return unsubscribe
   }, [series]) // eslint-disable-line react-hooks/exhaustive-deps
 
+//Recupere les épisodes de la premiere saison non terminée par l'utilisateur et ainsi 
+//pouvoir prendre le premier épisode non regardé pour l'afficher dans la page
   useEffect(() => {
     const unsubscribe = onSnapshot(
       query(
@@ -119,13 +130,9 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
   }, [numSeason]) // eslint-disable-line react-hooks/exhaustive-deps
 
   //Mettre à jour la BD
-
   useEffect(() => {
     let estTermine = false
     if (checked) {
-      // console.log('checked-numEp(0)', numEpisode[0])
-      //console.log('checked-seasons.nbEp', seasons[0].nombreEpisode)
-
       if (numEpisode[0] === seasons[0].nombreEpisode) {
         const SerieMajRef = doc(
           db,
@@ -154,6 +161,7 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
           'Episodes',
           `Episode ${numEpisode[0]}`
         )
+        //Recupere le nombre d'épisode regardé de la série et de la saison
         const compteur = series[0].nombreEpisodeRegarde
         const compteurSeason = seasons[0].nombreEpisodeRegarde
 
@@ -224,10 +232,9 @@ export default function EpisodeToSeeCard({ nameSeries, pictureSeries }) {
   if (seconds > 1) {
     loadComponent = true
   }
-
+  //Une fonction qui permet la redirection vers la page details de la série
   const clickedAndRedirect = () => {
     setClicked(true)
-    console.log(clicked)
     navigate('/private/myseries/details', { state: { data: nameSeries } })
   }
 

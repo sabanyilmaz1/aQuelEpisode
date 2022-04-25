@@ -22,8 +22,12 @@ import close from '../../assets/close.svg'
 import axios from 'axios'
 
 export default function AddSeriesDetailCard() {
+
+  //Recupere la state idSeriesDetails pour avoir l'id de la série cliqué
+  //toogleDetails pour gerer la fenetre modale
   const { toogleDetails, idSeriesDetails } = useContext(UserContext)
 
+  // Plusieurs states pour stocker plusieurs données à propos de la série cliqué
   const [series, setSeries] = useState([])
   const [genres, setGenres] = useState([])
   const [network, setNetwork] = useState([])
@@ -31,7 +35,8 @@ export default function AddSeriesDetailCard() {
   useEffect(() => {
     getData()
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
-  //console.log(series)
+  
+  //Recupere les infos sur la série cliqué pour avoir certains informations
   async function getData() {
     const reponse = await axios.get(
       `https://api.themoviedb.org/3/tv/${idSeriesDetails}?api_key=e308966c5ea18213912b8a786712b64c&language=fr-FR`
@@ -46,7 +51,6 @@ export default function AddSeriesDetailCard() {
   const overviewSeries = series.overview
 
   //Informations sur la série
-
   const countrySeries = series.origin_country
   const channelSeries = network?.name
   const nbEpisodes = series.number_of_episodes

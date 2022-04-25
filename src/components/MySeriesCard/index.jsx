@@ -6,9 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import {
   SeriesContainer,
   PictureSeries,
-  InfoSerieContainer,
   SeriesTitle,
-  SeriesItems,
   SeriesInfo,
   ProgressionContainer,
   DeleteText,
@@ -34,15 +32,18 @@ export default function MySeries({
 }) {
   const navigate = useNavigate()
 
-  const [clicked, setClicked] = useState(false)
+  const [clicked, setClicked] = useState(false) //eslint-disable-line
 
+  //Fonction qui permet la redirection vers la page details
   const clickedAndRedirect = () => {
     setClicked(true)
-    console.log(clicked)
     navigate('details', { state: { data: nameSeries } })
   }
-  const { currentUser } = useContext(UserContext) //Recupere les informations sur l'utilisateur connecté
+  //Recupere les informations sur l'utilisateur connecté
+  const { currentUser } = useContext(UserContext) 
   const idUserConnected = currentUser.uid
+
+  //Une fonction qui permet de supprimer la série en cliquant sur le bouton Supprimer la série
   const clickedAndDeleteSeries = async () => {
     await deleteDoc(
       doc(db, 'Utilisateurs', idUserConnected, 'Series', nameSeries)
@@ -62,7 +63,7 @@ export default function MySeries({
         </div>
         <SeriesTitleContainer>
           <TitleBtn onClick={() => clickedAndRedirect()}>
-            <SeriesTitle>{nameSeries} > </SeriesTitle>
+            <SeriesTitle>{nameSeries} </SeriesTitle>
           </TitleBtn>
         </SeriesTitleContainer>
         <SeriesInfoContainer>

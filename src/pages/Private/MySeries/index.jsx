@@ -16,13 +16,16 @@ import { onSnapshot, collection } from 'firebase/firestore'
 import { db } from '../../../firebase-config'
 
 export default function MySeries() {
-  const { currentUser } = useContext(UserContext) //Recupere les informations sur l'utilisateur connecté
+
+  //Recupere les informations sur l'utilisateur connecté
+  const { currentUser } = useContext(UserContext) 
   const idUserConnected = currentUser.uid
+
+  //State pour stocker les séries de l'utilisateur
   const [series, setSeries] = useState([])
 
   useEffect(() => {
     // Recupere la liste des séries de l'utilisateur
-
     const unsubscribe = onSnapshot(
       collection(db, 'Utilisateurs', idUserConnected, 'Series'),
       (serie) => {

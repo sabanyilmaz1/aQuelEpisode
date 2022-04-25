@@ -26,19 +26,21 @@ import {
 import logo from '../../assets/logoHeader.svg'
 
 function Header() {
+  //Recupere certains states globales 
+  // displayHeader permet de cacher l'header pour la page de connexion et inscription si ce state = false
+  // HideHeader est la fonction qui permet de changer la variable displayHeader
   const {
     displayHeader,
     currentUser,
     HideHeader,
-    clickedLink,
     setClickedLink,
   } = useContext(UserContext)
 
   const navigate = useNavigate()
-
+  //recupere le pathname de la page actuel
   const { pathname } = useLocation()
-  console.log(pathname)
-  console.log(clickedLink)
+
+
   // Deconnexion de l'utilisateur, donc rediriger vers la page de connexion
   const logOut = async () => {
     try {
@@ -87,7 +89,7 @@ function Header() {
             >
               <StyledLink2
                 to="/private/myseries"
-                url={pathname === '/private/myseries'}
+                url={pathname === '/private/myseries' }
               >
                 Mes Séries
               </StyledLink2>

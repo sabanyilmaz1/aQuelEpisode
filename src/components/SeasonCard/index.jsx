@@ -59,12 +59,16 @@ export default function SeasonCard({
   numMaxEpisode,
   idSerie,
 }) {
-  const [clicked, setClicked] = useState(false)
+
+  const [clicked, setClicked] = useState(false) //eslint-disable-line
   const navigate = useNavigate()
+
   const quotient = numEpisode / numMaxEpisode
+
   let isFinish = false
   let notStarted = false
   let notFinish = false
+
   if (quotient === 1) {
     isFinish = true
   }
@@ -74,11 +78,10 @@ export default function SeasonCard({
   if (quotient < 1 && quotient > 0) {
     notFinish = true
   }
-  console.log('quotient', quotient)
-
+  
+  //Une fonction qui permet la redirection vers la page detaills de la saison cliqué
   const clickedAndRedirect = () => {
     setClicked(true)
-    console.log(clicked)
     navigate('season', { state: { numSeason: numSeason, idSerie: idSerie } })
   }
 

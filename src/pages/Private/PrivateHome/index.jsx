@@ -16,14 +16,15 @@ export default function PrivateHome() {
   const idUserConnected = currentUser.uid
   const idUserEmail = currentUser.email
 
+  // State pour stocker la liste des utilisateurs
   const [users, setUsers] = useState([])
 
-  // Methode pour inscrire l'utlisateur dans la DB si ce n'est pas deja fait
-
+  
   useEffect(() => {
     addNewUsers(idUserConnected)
   })
 
+  // Une fonction pour créer un nouvel utilisateur dans la base de donnée si la personne vient de s'inscrire
   const addNewUsers = (idUser) => {
     const foundId = users.find((users) => users.id === idUser)
     if (foundId === undefined) {
@@ -31,7 +32,7 @@ export default function PrivateHome() {
     }
   }
 
-  // Recupere la liste des utilisateurs
+  // Recupere la liste des utilisateurs pour connaitre si l'utilisateur est deje dans la base de donnée
   useEffect(() => {
     getUsers()
   }, [])
@@ -40,7 +41,7 @@ export default function PrivateHome() {
     const data = await getAllUsers()
     setUsers(data.docs.map((doc) => ({ ...doc.data() })))
   }
-  //console.log('Les utilisateurs', users)
+
   return (
     <PageWrapper>
       <WelcomeWrapper>

@@ -31,7 +31,6 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
 
   useEffect(() => {
     // Recupere la liste des séries de l'utilisateur
-
     const unsubscribe = onSnapshot(
       collection(db, 'Utilisateurs', idUserConnected, 'Series'),
       (serie) => {
@@ -41,15 +40,15 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
     return unsubscribe
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  //console.log(series)
-
+  //Recupere certains states et certaines fonctions du UserContext
   const {
     currentUser,
     toogleDetails,
     detailsVisible,
     setIdSeries,
-    idSeriesDetails,
   } = useContext(UserContext)
+
+  //L'identifiant firebase de l'utilisateur connecté
   const idUserConnected = currentUser.uid
 
   const IMG_API = 'http://image.tmdb.org/t/p/w500'
@@ -59,14 +58,13 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
       'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/660px-No-Image-Placeholder.svg.png?20200912122019'
   }
 
-  // Cette fonction recupere les informations necessaires sur la série selectionnée et les envoies dans la base de donnée
+  // Cette fonction recupere les informations necessaires sur la série selectionnée à l'aide de l'id de la série cliqué et les envoies dans la base de donnée
   const getSeries = async (id) => {
     const reponseApiSeries = await axios.get(
       `https://api.themoviedb.org/3/tv/${id}?api_key=e308966c5ea18213912b8a786712b64c&language=fr-FR`
     )
-    //console.log(id)
+    //Recupere les données sous format JSON de la requete API reponseApiSeries
     const dataSerie = reponseApiSeries.data
-    //console.log(dataSerie)
 
     // Attribut à ajouter dans la base de données
     const nomSerie = dataSerie.name
@@ -88,7 +86,7 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
       resumeSerie,
       estTermine: false,
     }
-    //console.log('Serie', Serie)
+  
     addSeries(idUserConnected, Serie)
 
     // Ajout des saisons de la série selectionnée
@@ -174,6 +172,7 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
           const resumeEpisode = dataSeason[j].overview
           const imageEpisode =
             'http://image.tmdb.org/t/p/w500/' + dataSeason[j]?.still_path
+          
           //l'attribut estSortie
           const DateNow = new Date()
           const dateNowInFormat = formatDate(DateNow)
@@ -202,11 +201,10 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
     const id_series = idSerie
     const name_series = nameSerie
     const seriesFound = series.find((show) => show.nomSerie === name_series)
+    //On ajoute la série seulement si cette série n'est pas deja dans la liste des séries
     if (seriesFound !== undefined) {
-      console.log('Serie existant')
       alert('Erreur : Cette série est deja ajouté dans votre liste')
     } else {
-      console.log('Serie pas ajouté')
       alert(`Vous avez ajouté la série : ${nameSerie} à votre liste de séries`)
       getSeries(id_series)
     }
@@ -224,14 +222,13 @@ export default function AddSeriesCard({ nameSerie, posterLink, idSerie }) {
     return [year, month, day].join('-')
   }
 
+  // La fonction toogleDetail permet d'afficher la fenetre modale pour afficher les details de la série
   const toogleDetailsSeries = () => {
     toogleDetails('afficheDetails')
     setIdSeries(idSerie)
-    console.log(idSeriesDetails)
   }
 
-  //console.log(idSeriesDetails)
-  //console.log(detailsVisible)
+
   return (
     <div>
       <PageContainer>

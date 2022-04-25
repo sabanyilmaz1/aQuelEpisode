@@ -36,15 +36,22 @@ export default function EpisodeCard({
   nomSerie,
   dateEpisode,
 }) {
+
+  //State qui gere l'etat du checkbox
   const [checkedEpisode, setCheckEpisode] = useState([false])
+
+  //State qui recupere l'information si l'épisode est sorti ou pas
   const [isReleased, setIsReleased] = useState([false])
-  const [episode, setEpisode] = useState()
+
+  //State qui recupere les infos sur un épisode
+  const [episode, setEpisode] = useState() // eslint-disable-line
 
   //Recupere les informations sur l'utilisateur connecté
   const { currentUser } = useContext(UserContext)
   const idUserConnected = currentUser.uid
 
   useEffect(() => {
+    // Recupere les informations sur un épisode depuis la base de données
     const idSeason = 'Saison ' + numSaison
     const unsubscribe = onSnapshot(
       query(
@@ -67,8 +74,9 @@ export default function EpisodeCard({
       }
     )
     return unsubscribe
-  }, [])
+  }, []) // eslint-disable-line
 
+  //Code pour avoir la date de l'episode avec un compteur
   const years = Number(dateEpisode.substring(0, 4))
   const month = Number(dateEpisode.substring(5, 7))
   const day = Number(dateEpisode.substring(8, 10))
@@ -81,13 +89,14 @@ export default function EpisodeCard({
   }
 
   const dateEpStr = dateEp.toLocaleDateString('fr-FR', options)
-  //console.log(dateEpStr)
-
+  
   const dateNow = new Date()
   const count = parseInt(
     (dateEp.getTime() - dateNow.getTime()) / (1000 * 60 * 60 * 24) + 1
   )
-
+  
+  // fonction qui permet de cocher ou decocher un épisode 
+  // decocher un épisode si l'utilisateur a coché par erreur
   const handleClick = async () => {
     const idSeason = 'Saison ' + numSaison
     const idEpisode = 'Episode ' + numEpisode
@@ -240,7 +249,6 @@ export default function EpisodeCard({
           </CheckWrapper>
         </EpisodeWrap>
       )}
-
       {!isReleased[0] && (
         <EpisodeWrap>
           <PictureStyle

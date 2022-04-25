@@ -37,9 +37,11 @@ export default function MySeriesInDetail() {
 
   const { currentUser } = useContext(UserContext)
   const idUserConnected = currentUser.uid
+
   const [series, setSeries] = useState([])
   const [seasons, setSeasons] = useState([])
 
+  //Recupere les données de la série en detail 
   useEffect(() => {
     const unsubscribe = onSnapshot(
       query(
@@ -54,7 +56,7 @@ export default function MySeriesInDetail() {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    // Recupere la liste des séries de l'utilisateur non terminés
+    // Recupere la liste des saisons
     const unsubscribe = onSnapshot(
       query(
         collection(

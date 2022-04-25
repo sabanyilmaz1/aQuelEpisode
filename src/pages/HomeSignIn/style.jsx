@@ -99,6 +99,7 @@ export const FooterText = styled.span`
 
 export const PageWrapper = styled.div`
   // height: 100vh;
+  min-height: calc(100vh - 100px);
 `
 export const ValidationStyle = styled.span`
   color: #ff7b00;

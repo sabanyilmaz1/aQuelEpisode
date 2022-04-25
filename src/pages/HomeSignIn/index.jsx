@@ -43,7 +43,7 @@ function HomeSignIn() {
   }
 
   const formRef = useRef()
-
+  //la fonction qui gere le form pour connecter l'utilisateur
   const handleForm = async (e) => {
     e.preventDefault()
     try {
@@ -51,7 +51,6 @@ function HomeSignIn() {
       setValidation('')
 
       //Redirection vers la page d'accueil en mode connecté si la connexion est bonne
-
       navigate('/private/private-home')
     } catch {
       setValidation("Erreur ! l'email ou le mot de passe est incorrect")

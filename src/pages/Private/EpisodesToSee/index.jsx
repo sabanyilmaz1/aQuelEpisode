@@ -44,7 +44,9 @@ export const NoEpisodeStyle = styled.div`
 `
 
 export default function EpisodesToSee() {
-  const { currentUser } = useContext(UserContext) //Recupere les informations sur l'utilisateur connecté
+
+  //Recupere les informations sur l'utilisateur connecté
+  const { currentUser } = useContext(UserContext) 
   const idUserConnected = currentUser.uid
   const [series, setSeries] = useState([])
 
@@ -61,7 +63,6 @@ export default function EpisodesToSee() {
     )
     return unsubscribe
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
-  console.log('series', series)
   return (
     <PageContainer>
       <TitlePage>À Voir</TitlePage>

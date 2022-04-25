@@ -27,13 +27,16 @@ function SignUp() {
 
   HideHeader('nonConnecté')
 
+  //On recupere les inputs avec useRef
   const inputs = useRef([])
   const addInputs = (el) => {
     if (el && !inputs.current.includes(el)) {
       inputs.current.push(el)
     }
   }
+
   const formRef = useRef()
+  // La fonction qui gére le form
   const handleForm = async (e) => {
     e.preventDefault()
 
@@ -49,9 +52,9 @@ function SignUp() {
 
     try {
       await signUpFirebase(inputs.current[0].value, inputs.current[1].value)
+      //Remise à zero du form en cas d'inscription
       formRef.current.reset()
       setValidation('')
-      //console.log(cred)
       navigate('/private/private-home')
     } catch (err) {
       if (err.code === 'auth/invalid-email') {
