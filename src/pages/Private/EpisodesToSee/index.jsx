@@ -32,7 +32,7 @@ export const AllEpisodes = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  min-height: calc(100vh - 100px);
 `
 export const NoEpisodeStyle = styled.div`
   height: 118px;
@@ -44,9 +44,8 @@ export const NoEpisodeStyle = styled.div`
 `
 
 export default function EpisodesToSee() {
-
   //Recupere les informations sur l'utilisateur connecté
-  const { currentUser } = useContext(UserContext) 
+  const { currentUser } = useContext(UserContext)
   const idUserConnected = currentUser.uid
   const [series, setSeries] = useState([])
 
