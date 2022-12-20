@@ -2,6 +2,11 @@
 
 aQuelEpisode est une application web qui permet de suivre les épisodes de ses séries préférées et de savoir à quel épisode on en est.
 
+## Technologies
+
+1. ReactJS pour le frontend
+2. Firebase pour le backend et le systeme d'authentification
+
 ## Installation
 
 Pour utiliser aQuelEpisode, commencez par cloner ce référentiel dans votre environnement de développement local:
@@ -12,27 +17,7 @@ Copy code
 
 Ensuite, installez les dépendances du projet en utilisant la commande `npm install` ou `yarn install`:
 
-npm install
-
-Copy code
-
-ou
-
-yarn install
-
-Copy code
-
 Une fois les dépendances installées, vous pouvez lancer l'application en utilisant la commande `npm start` ou `yarn start`:
-
-npm start
-
-Copy code
-
-ou
-
-yarn start
-
-Copy code
 
 L'application devrait maintenant être accessible à l'adresse http://localhost:3000 dans votre navigateur.
 
