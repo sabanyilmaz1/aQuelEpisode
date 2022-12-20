@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# aQuelEpisode
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+aQuelEpisode est une application web qui permet de suivre les épisodes de ses séries préférées et de savoir à quel épisode on en est.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+Pour utiliser aQuelEpisode, commencez par cloner ce référentiel dans votre environnement de développement local:
 
-### `npm start`
+git clone https://github.com/sabanyilmaz1/aQuelEpisode.git
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Copy code
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Ensuite, installez les dépendances du projet en utilisant la commande `npm install` ou `yarn install`:
 
-### `npm test`
+npm install
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Copy code
 
-### `npm run build`
+ou
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+yarn install
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Copy code
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Une fois les dépendances installées, vous pouvez lancer l'application en utilisant la commande `npm start` ou `yarn start`:
 
-### `npm run eject`
+npm start
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Copy code
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ou
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+yarn start
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Copy code
 
-## Learn More
+L'application devrait maintenant être accessible à l'adresse http://localhost:3000 dans votre navigateur.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Utilisation
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Pour utiliser aQuelEpisode, commencez par vous inscrire en utilisant le formulaire d'inscription. Une fois que vous êtes connecté, vous pouvez ajouter vos séries préférées en utilisant le formulaire "Ajouter une série". Vous pouvez également voir la liste de toutes les séries que vous suivez en cliquant sur le lien "Mes séries" dans le menu de navigation.
 
-### Code Splitting
+Pour marquer un épisode comme vu, allez à la page "À voir" et cliquez sur le bouton checkbox pour l'episode vu . Vous pouvez egalement marqué un épisode vu en allant sur la page de la sérié et de la saison dans la liste des épisodes de la série.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Pour connaitre la sorties des prochains épisodes, allez à la page "À venir".
 
-### Analyzing the Bundle Size
+## Contribuer
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Si vous souhaitez contribuer à aQuelEpisode en proposant des corrections ou des améliorations, voici comment procéder:
 
-### Making a Progressive Web App
+1. Créez une nouvelle branche à partir de la branche principale (généralement `master`).
+2. Faites vos changements dans cette branche.
+3. Créez une pull request pour soumettre vos changements. Assurez-vous de décrire en détail les modifications apportées et de fournir toute documentation nécessaire.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Je suis impatient de voir ce que vous allez ajouter à aQuelEpisode!
 
-### Advanced Configuration
+## Remerciements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Je tiens à remercier tous ceux qui ont contribué à aQuel
